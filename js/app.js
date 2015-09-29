@@ -19,7 +19,7 @@
      
      Conectar_BD: function() {
        navigator.notification.alert('OK!');
-       this.db = openDatabase('PedidosMobileDB', '1.0', 'Base de datos de pedidos online version mobile', 500);
+       this.db = window.sqlitePlugin.openDatabase('PedidosMobileDB', '1.0', 'Base de datos de pedidos online version mobile', 500);
        navigator.notification.alert('CONECTADO!');
  	 },
 

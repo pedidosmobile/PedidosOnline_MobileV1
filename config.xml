@@ -20,6 +20,7 @@
 
    <gap:plugin name="org.apache.cordova.dialogs" version="0.2.10" />
    <gap:plugin name="org.apache.cordova.geolocation" version="0.3.10" /> 
+   <gap:plugin name="com.brodysoft.sqliteplugin" version="1.0.6" />
 
    <preference name="permissions" value="none"/>
 

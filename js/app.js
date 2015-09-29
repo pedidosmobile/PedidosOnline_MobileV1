@@ -12,6 +12,7 @@
 
      onDeviceReady: function() { 
         
+           navigator.notification.alert('You are the winner!');
      	// this.Conectar_BD();
       //   this.ExecuteQuery(this.Crear_BD());
      }, 

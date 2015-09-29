@@ -25,7 +25,7 @@
             this.Conectar_BD();
         }
 
-        this.db.transaction(operacion, function(){}, function(){});
+        this.db.transaction(operacion, function(){alert("ok");}, function(){alert("ok");});
      },
 
  	 Crear_BD: function(tx){

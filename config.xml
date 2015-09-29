@@ -17,10 +17,17 @@
     </author> 
 
    <preference name="phonegap-version" value="3.7.0"/> 
-
+   <gap:plugin name="org.apache.cordova.device"/>
+    <gap:plugin name="com.brodysoft.sqliteplugin" version="1.0.6" />
    <gap:plugin name="org.apache.cordova.dialogs" version="0.2.10" />
    <gap:plugin name="org.apache.cordova.geolocation" version="0.3.10" /> 
-   <gap:plugin name="com.brodysoft.sqliteplugin" version="1.0.6" />
+
+    <feature name="Notification">
+      <param name="wp-package" value="Notification"/>
+    </feature>
+    <feature name="Vibration">
+      <param name="android-package" value="org.apache.cordova.vibration.Vibration" />
+    </feature>
 
    <preference name="permissions" value="none"/>
 

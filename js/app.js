@@ -11,7 +11,7 @@
      },
 
      onDeviceReady: function() { 
-     	alert("ok inicio");
+     	navigator.notification.alert('You are the winner!');
      	this.Conectar_BD();
         this.ExecuteQuery(this.Crear_BD);
      }, 
@@ -26,7 +26,7 @@
             this.Conectar_BD();
         }
 
-        this.db.transaction(operacion, function(){alert("ok");}, function(){alert("ok");});
+        this.db.transaction(operacion, function(){navigator.notification.alert('ok!');}, function(){navigator.notification.alert('nok!');});
      },
 
  	 Crear_BD: function(tx){

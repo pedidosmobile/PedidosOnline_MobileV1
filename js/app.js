@@ -11,6 +11,7 @@
      },
 
      onDeviceReady: function() { 
+     	alert("ok inicio");
      	this.Conectar_BD();
         this.ExecuteQuery(this.Crear_BD);
      }, 

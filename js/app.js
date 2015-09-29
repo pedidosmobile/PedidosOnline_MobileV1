@@ -11,6 +11,7 @@
      },
 
      onDeviceReady: function() { 
+       navigator.notification.alert('OK!');
        this.Conectar_BD();
        this.ExecuteQuery(this.Crear_BD());
      }, 

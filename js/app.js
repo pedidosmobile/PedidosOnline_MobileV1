@@ -12,15 +12,15 @@
      },
 
      onDeviceReady: function() { 
-       navigator.notification.alert('OK!');
+       alert('OK!');
        this.Conectar_BD();
        this.ExecuteQuery(this.Crear_BD);
      }, 
      
      Conectar_BD: function() {
-       navigator.notification.alert('OK!');
-       this.db = openDatabase('PedidosMobileDB11', '1.0', 'Base de datos de pedidos online version mobile', 2*1024*1024);
-       navigator.notification.alert('CONECTADO!');
+       alert('OK!');
+       this.db = openDatabase('PedidosMobileDB', '1.0', 'Base de datos de pedidos online version mobile', 2*1024*1024);
+       alert('CONECTADO!');
  	 },
 
      ExecuteQuery: function(operacion)
@@ -28,9 +28,9 @@
         if (this.db == null) {
             this.Conectar_BD();
         }
-        navigator.notification.alert('EJECUTADO CONSULTA!');
-        this.db.transaction(operacion, function(tx, err){navigator.notification.alert('NOK!');}, function(){navigator.notification.alert('OK!');});
-        navigator.notification.alert('EJECUTADO CONSULTA444!');
+        alert('EJECUTADO CONSULTA!');
+        this.db.transaction(operacion, function(tx, err){alert('NOK!');}, function(){alert('OK!');});
+        alert('EJECUTADO CONSULTA444!');
      },
 
  	 Crear_BD: function(tx){

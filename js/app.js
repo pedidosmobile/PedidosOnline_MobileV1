@@ -12,9 +12,9 @@
      },
 
      onDeviceReady: function() { 
-       alert('OK!');
-       this.Conectar_BD();
-       this.ExecuteQuery(this.Crear_BD);
+       navigator.notification.alert('You are the winner!');
+       // this.Conectar_BD();
+       // this.ExecuteQuery(this.Crear_BD);
      }, 
      
      Conectar_BD: function() {

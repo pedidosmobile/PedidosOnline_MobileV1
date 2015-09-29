@@ -18,6 +18,7 @@
      
      Conectar_BD: function() {
        this.db = window.sqlitePlugin.openDatabase('PedidosMobileDB', '1.0', 'Base de datos de pedidos online version mobile', 2*1024*1024);
+       navigator.notification.alert('CONECTADO!');
  	 },
 
      ExecuteQuery: function(operacion)
@@ -25,7 +26,7 @@
         if (this.db == null) {
             this.Conectar_BD();
         }
-
+        navigator.notification.alert('EJECUTADO CONSULTA!');
         this.db.transaction(operacion, function(){navigator.notification.alert('OK!');}, function(){navigator.notification.alert('NOK!');});
      },
 

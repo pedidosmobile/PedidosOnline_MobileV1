@@ -12,14 +12,15 @@
      },
 
      onDeviceReady: function() { 
-       navigator.notification.alert('You are the winner!');
+      // navigator.notification.alert('You are the winner!');
        this.Conectar_BD();
        this.ExecuteQuery(this.Crear_BD);
      }, 
      
      Conectar_BD: function() {
        navigator.notification.alert('OK!');
-       this.db = window.sqlitePlugin.openDatabase('PedidosMobileDB', '1.0', 'Base de datos de pedidos online version mobile', 500);
+       this.db = window.sqlitePlugin.openDatabase({name: "PedidosMobileDB.db"});
+       //window.sqlitePlugin.openDatabase('PedidosMobileDB', '1.0', 'Base de datos de pedidos online version mobile', 500);
        navigator.notification.alert('CONECTADO!');
  	 },
 

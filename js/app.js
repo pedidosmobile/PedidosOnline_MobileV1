@@ -17,8 +17,17 @@
        //
 
         this.db = window.sqlitePlugin.openDatabase({name: "PedidosMobileDB.db"});
-        this.db.transaction(Crear_BD, function(tx, err){navigator.notification.alert('NOK!');}, function(){navigator.notification.alert('OK!');});
-        navigator.notification.alert('You are the winner!');
+
+        this.db.transaction(function(tx) {
+           tx.executeSql('DROP TABLE IF EXISTS test_table');
+           tx.executeSql('CREATE TABLE IF NOT EXISTS test_table (id integer primary key, data text, data_num integer)');
+
+           // demonstrate PRAGMA:
+           this.db.executeSql("pragma table_info (test_table);", [], function(res) {
+           navigator.notification.alert("PRAGMA res: " + JSON.stringify(res));
+        });
+
+        //navigator.notification.alert('You are the winner!');
      }, 
      
      Conectar_BD: function() {

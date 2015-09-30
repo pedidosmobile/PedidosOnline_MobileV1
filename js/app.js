@@ -20,11 +20,11 @@
        this.db = window.sqlitePlugin.openDatabase({name: "PedidosMobileDB.db"});
 
        this.db.transaction(function(tx) {
-          tx.executeSql('DROP TABLE IF EXISTS test_table');
-          tx.executeSql('CREATE TABLE IF NOT EXISTS test_table (id integer primary key, data text, data_num integer)');
+          tx.executeSql('DROP TABLE IF EXISTS test_table2');
+          tx.executeSql('CREATE TABLE IF NOT EXISTS test_table2 (id integer primary key, data text, data_num integer)');
 
           // demonstrate PRAGMA:
-          this.db.executeSql("PRAGMA foreign_keys=ON;", [], function(res) {
+          this.db.executeSql("PRAGMA foreign_keys=1;", [], function(res) {
             navigator.notification.alert("PRAGMA res: " + JSON.stringify(res));
           }); 
       });

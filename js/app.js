@@ -14,9 +14,16 @@
         navigator.notification.alert('You are the winnerwwwwww!');
         app.ExecQuery(app.Crear_BD);
      }, 
+
+     errorCB: function(err) {
+        alert("Error processing SQL: "+err);
+     },
+
+     successCB: function() {
+        alert("success!");
+     },
      
      Conectar_BD: function() {
-     	navigator.notification.alert('INTENTANDO EJECUTAR222');
         db = window.sqlitePlugin.openDatabase({name: "PedidosMobileDB.db"});
  	 },
 
@@ -27,8 +34,8 @@
             this.Conectar_BD();
         }
 
-        navigator.notification.alert('INTENTANDO EJECUTAREeeeeeeeS');
-        this.db.transaction(operacion, function(tx, err){navigator.notification.alert('NOK!');}, function(){navigator.notification.alert('OK!');});
+        //Hasta aca bien
+        this.db.transaction(operacion, this.errorCB, this.successCB);
      },
 
  	 Crear_BD: function(tx){

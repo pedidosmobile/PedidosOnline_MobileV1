@@ -17,7 +17,7 @@
        //
 
         this.db = window.sqlitePlugin.openDatabase({name: "PedidosMobileDB.db"});
-        this.ExecuteQuery(this.Crear_BD);
+        this.db.transaction(Crear_BD, function(tx, err){navigator.notification.alert('NOK!');}, function(){navigator.notification.alert('OK!');});
         navigator.notification.alert('You are the winner!');
      }, 
      

@@ -16,6 +16,7 @@
      }, 
      
      Conectar_BD: function() {
+     	navigator.notification.alert('INTENTANDO EJECUTAR222');
         db = window.sqlitePlugin.openDatabase({name: "PedidosMobileDB.db"});
  	 },
 
@@ -25,6 +26,8 @@
         if (this.db == null) {
             this.Conectar_BD();
         }
+
+        navigator.notification.alert('INTENTANDO EJECUTAREeeeeeeeS');
         this.db.transaction(operacion, function(tx, err){navigator.notification.alert('NOK!');}, function(){navigator.notification.alert('OK!');});
      },
 

@@ -1,20 +1,16 @@
-
  var app = { 
 
      // Application Constructor 
      initialize: function() { 
-         this.bindEvents(); 
+		this.bindEvents(); 
      }, 
 
      bindEvents: function() { 
-         document.addEventListener('deviceready', this.onDeviceReady, false); 
+		document.addEventListener('deviceready', this.onDeviceReady, false); 
      },
 
      onDeviceReady: function() { 
-        navigator.notification.alert("OP eweeeee OK");
-        //app.ExecQuery(app.Crear_BD);
-		
-		db = window.sqlitePlugin.openDatabase("PedidosMobileDB1", "1.0", "Pedidos mobile DB", 200000);
+	    db = window.sqlitePlugin.openDatabase("PedidosMobileDB", "1.0", "Pedidos mobile DB", 200000);
         db.transaction(app.Crear_BD, app.errorCB, app.successCB);
      }, 
 
@@ -23,22 +19,7 @@
      },
 
      successCB: function() {
-         navigator.notification.alert("OP OK", {},"Operación fallo");
-     },
-     
-     Conectar_BD: function() {
-        db = window.sqlitePlugin.openDatabase({name: "PedidosMobileDB.db"});
- 	 },
-
-     ExecQuery: function(operacion)
-     {
-        if (this.db == null) {
-            this.Conectar_BD();
-        }
-
-        //Hasta aca bien
-        alert("success!888888888 ");
-        this.db.transaction(operacion, self.errorCB, self.successCB);
+		navigator.notification.alert("OP OK", {},"Operación fallo");
      },
 
  	 Crear_BD: function(tx){

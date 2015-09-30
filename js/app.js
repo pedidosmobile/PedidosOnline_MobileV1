@@ -3,7 +3,7 @@
 
      // Application Constructor 
      initialize: function() { 
-         this.onDeviceReady(); 
+         this.bindEvents(); 
      }, 
 
      bindEvents: function() { 
@@ -11,10 +11,10 @@
      },
 
      onDeviceReady: function() { 
-        alert('You are the winnerwwwwww!');
+        alert('You ssss!');
         //app.ExecQuery(app.Crear_BD);
 		
-		db = window.sqlitePlugin.openDatabase("PedidosMobileDB", "1.0", "Pedidos mobile DB", 200000);
+		db = window.sqlitePlugin.openDatabase("PedidosMobileDB1", "1.0", "Pedidos mobile DB", 200000);
         db.transaction(app.Crear_BD, app.errorCB, app.successCB);
      }, 
 

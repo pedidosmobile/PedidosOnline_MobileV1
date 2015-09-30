@@ -23,17 +23,17 @@
             navigator.notification.alert("PRAGMA res: " + JSON.stringify(res));
         });
         
-        // this.db.transaction(function(tx) {
-        //    tx.executeSql('DROP TABLE IF EXISTS test_table5');
-        //    tx.executeSql('CREATE TABLE IF NOT EXISTS test_table5 (id integer primary key, data text, data_num integer)');
+        this.db.transaction(function(tx) {
+           tx.executeSql('DROP TABLE IF EXISTS test_table5');
+           tx.executeSql('CREATE TABLE IF NOT EXISTS test_table5 (id integer primary key, data text, data_num integer)');
 
-           // demonstrate PRAGMA:
+   //         demonstrate PRAGMA:
 
-			//enable PRAGMA to use foreign keys constraint: it is OFF by default
+			// enable PRAGMA to use foreign keys constraint: it is OFF by default
 
-          //  this.db.executeSql("pragma table_info (test_table);", [], function(res) {
-          //  navigator.notification.alert("PRAGMA res: " + JSON.stringify(res));
-          // });
+   //         this.db.executeSql("pragma table_info (test_table);", [], function(res) {
+   //         navigator.notification.alert("PRAGMA res: " + JSON.stringify(res));
+          });
         navigator.notification.alert('You are the winner88888!');
      }, 
      

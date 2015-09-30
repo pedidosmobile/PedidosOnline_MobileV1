@@ -26,8 +26,8 @@
            // demonstrate PRAGMA:
            this.db.executeSql("pragma table_info (test_table);", [], function(res) {
            navigator.notification.alert("PRAGMA res: " + JSON.stringify(res));
+          });
         });
-
         navigator.notification.alert('You are the winner88888!');
      }, 
      

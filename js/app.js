@@ -53,6 +53,6 @@
 
     Crear_Tablas: function() {
        navigator.notification.alert('OKOKOKOK');
-       this.ExecQuery(this.Crear_BD);
+       //this.ExecQuery(this.Crear_BD);
     }
  }; 

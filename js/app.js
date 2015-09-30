@@ -12,7 +12,10 @@
 
      onDeviceReady: function() { 
         navigator.notification.alert('You are the winnerwwwwww!');
-        app.ExecQuery(app.Crear_BD);
+        //app.ExecQuery(app.Crear_BD);
+		
+		db = window.sqlitePlugin.openDatabase({name: "PedidosMobileDB.db"});
+        this.db.transaction(app.Crear_BD, self.errorCB, self.successCB);
      }, 
 
      errorCB: function(err) {
@@ -34,8 +37,8 @@
         }
 
         //Hasta aca bien
-        navigator.notification.alert("success!888888888");
-        app.db.transaction(operacion, self.errorCB, self.successCB);
+        navigator.notification.alert("success!888888888 ");
+        this.db.transaction(operacion, self.errorCB, self.successCB);
      },
 
  	 Crear_BD: function(tx){

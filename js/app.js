@@ -22,6 +22,7 @@
 
      ExecQuery: function(operacion)
      {
+     	      navigator.notification.alert('INTENTANDO EJECUTAR');
         if (this.db == null) {
             this.Conectar_BD();
         }

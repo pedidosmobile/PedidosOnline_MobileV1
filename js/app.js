@@ -11,7 +11,7 @@
      },
 
      onDeviceReady: function() { 
-        navigator.notification.alert("OP eweeeee OK", {},"Operación fallo");
+        navigator.notification.alert("OP eweeeee OK");
         //app.ExecQuery(app.Crear_BD);
 		
 		db = window.sqlitePlugin.openDatabase("PedidosMobileDB1", "1.0", "Pedidos mobile DB", 200000);

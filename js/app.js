@@ -39,6 +39,7 @@
      },
 
  	 Crear_BD: function(tx){
+ 	   tx.executeSql('PRAGMA foreign_keys = ON');
 	   tx.executeSql('CREATE TABLE IF NOT EXISTS descuento(des_id INTEGER PRIMARY KEY ASC, ter_id int, item_id int,des_valorDescuento varchar(45),des_porcentaje varchar(45),des_estado varchar(45),des_fechaCreacion vachar(45),des_usuarioCreacion varchar(45))');
 	   tx.executeSql('CREATE TABLE IF NOT EXISTS item (item_id integer primary key asc,item_referencia varchar(45),item_codigo varchar(45),item_descripcion varchar(45),item_cantidadBase varchar(45),item_stock varchar(45),item_estado varchar(45),item_fechaCreacion varchar(45),item_usuarioCreacion varchar(45))');   
 	   tx.executeSql('CREATE TABLE IF NOT EXISTS maestro (mae_id integer primary key asc,mae_tipo varchar(45),mae_descripcion varchar(45),mae_moneda varchar(45),mae_fechaCreacion varchar(45),mae_usuarioCreacion varchar(45),mae_estado varchar(45),usu_id int,suc_id int)');

@@ -26,7 +26,7 @@
         //      // }); 
         //    });
 		
-		this.ExecuteQuery(this.Crear_BD);
+		this.ExecQuery(this.Crear_BD);
         navigator.notification.alert('You are the winner88888!');
      }, 
 
@@ -44,8 +44,9 @@
 	   tx.executeSql('CREATE TABLE IF NOT EXISTS usuario (usu_id integer PRIMARY key asc, usu_cedula varchar(45),usu_nombre varchar(45),usu_indActivo varchar(45),usu_username varchar(45),usu_password varchar(45),usu_empresa varchar(45),usu_nitEmpresa varchar(45),usu_fechaCreacion varchar(45),usu_usuarioCreacion  varchar(45))');
  	},
 
- 	ExecuteQuery: function(operacion)
+ 	ExecQuery: function(operacion)
     {
+    	navigator.notification.alert('OKOKOKOK');
       if (this.db == null) {
           this.db = window.sqlitePlugin.openDatabase({name: "PedidosMobileDB.db"});
       }

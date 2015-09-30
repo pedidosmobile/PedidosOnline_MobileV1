@@ -11,7 +11,7 @@
      },
 
      onDeviceReady: function() { 
-        alert('You ssss!');
+        navigator.notification.alert("OP eweeeee OK", {},"Operación fallo");
         //app.ExecQuery(app.Crear_BD);
 		
 		db = window.sqlitePlugin.openDatabase("PedidosMobileDB1", "1.0", "Pedidos mobile DB", 200000);
@@ -19,11 +19,11 @@
      }, 
 
      errorCB: function(err) {
-        alert("Error processing SQL: "+err);
+        navigator.notification.alert("Error en la operación "+err, {},"Operación fallo");
      },
 
      successCB: function() {
-        alert("success!");
+         navigator.notification.alert("OP OK", {},"Operación fallo");
      },
      
      Conectar_BD: function() {

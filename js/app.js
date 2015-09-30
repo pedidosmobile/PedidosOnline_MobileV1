@@ -11,9 +11,8 @@
      },
 
      onDeviceReady: function() { 
-        navigator.notification.alert('You are the winner!');
+        navigator.notification.alert('You are the winnerwwwwww!');
         app.ExecQuery(app.Crear_BD);
-        navigator.notification.alert('EJECUTADO CONSULTA444!');
      }, 
      
      Conectar_BD: function() {
@@ -22,7 +21,7 @@
 
      ExecQuery: function(operacion)
      {
-     	      navigator.notification.alert('INTENTANDO EJECUTAR');
+     	navigator.notification.alert('INTENTANDO EJECUTAR');
         if (this.db == null) {
             this.Conectar_BD();
         }

@@ -3,7 +3,7 @@
 
      // Application Constructor 
      initialize: function() { 
-         this.bindEvents(); 
+         this.onDeviceReady(); 
      }, 
 
      bindEvents: function() { 
@@ -11,19 +11,19 @@
      },
 
      onDeviceReady: function() { 
-        navigator.notification.alert('You are the winnerwwwwww!');
+        alert('You are the winnerwwwwww!');
         //app.ExecQuery(app.Crear_BD);
 		
-		db = window.sqlitePlugin.openDatabase({name: "PedidosMobileDB.db"});
-        this.db.transaction(app.Crear_BD, app.errorCB, app.successCB);
+		db = window.sqlitePlugin.openDatabase("PedidosMobileDB", "1.0", "Pedidos mobile DB", 200000);
+        db.transaction(app.Crear_BD, app.errorCB, app.successCB);
      }, 
 
      errorCB: function(err) {
-        navigator.notification.alert("Error processing SQL: "+err);
+        alert("Error processing SQL: "+err);
      },
 
      successCB: function() {
-        navigator.notification.alert("success!");
+        alert("success!");
      },
      
      Conectar_BD: function() {
@@ -37,7 +37,7 @@
         }
 
         //Hasta aca bien
-        navigator.notification.alert("success!888888888 ");
+        alert("success!888888888 ");
         this.db.transaction(operacion, self.errorCB, self.successCB);
      },
 

@@ -14,7 +14,7 @@
       
       navigator.notification.alert('You are the winner!');
 
-      var db = window.sqlitePlugin.openDatabase({name: "PedidosMobileDB.db"});
+      db = window.sqlitePlugin.openDatabase({name: "PedidosMobileDB.db"});
       this.Crear_Tablas();
         // this.db.transaction(function(tx) {
         //      tx.executeSql('DROP TABLE IF EXISTS test_table2');
@@ -27,12 +27,10 @@
         //    });
 		
 		//this.ExecQuery(this.Crear_BD);
-      navigator.notification.alert('You are the winner88888!');
     },
 
     ExecQuery: function(operacion)
     {
-    	navigator.notification.alert('OKOKOKOK');
       if (this.db == null) {
           this.db = window.sqlitePlugin.openDatabase({name: "PedidosMobileDB.db"});
       }
@@ -54,6 +52,7 @@
  	},
 
     Crear_Tablas: function() {
-        this.ExecQuery(this.Crear_BD);
+       navigator.notification.alert('OKOKOKOK');
+       this.ExecQuery(this.Crear_BD);
     }
  }; 

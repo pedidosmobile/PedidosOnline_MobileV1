@@ -25,8 +25,10 @@
 
            // demonstrate PRAGMA:
 
-			this.db.executeSql("PRAGMA foreign_keys = ON;", [], function(res) {
-              navigator.notification.alert("PRAGMA res: " + JSON.stringify(res));
+			db.executeSql("PRAGMA foreign_keys=ON;", [], function(res) {
+            db.executeSql("PRAGMA foreign_keys;", [], function(res){
+                  console.log("PRAGMA res: " + JSON.stringify(res));
+              });
             });
 
           //  this.db.executeSql("pragma table_info (test_table);", [], function(res) {

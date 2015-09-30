@@ -17,7 +17,7 @@
        //this.Conectar_BD();
        //
 
-        this.db = window.sqlitePlugin.openDatabase({name: "PedidosMobileDB.db"});
+       this.db = window.sqlitePlugin.openDatabase({name: "PedidosMobileDB.db"});
 
        this.db.transaction(function(tx) {
           tx.executeSql('DROP TABLE IF EXISTS test_table');

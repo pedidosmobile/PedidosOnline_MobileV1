@@ -35,7 +35,7 @@
 
         //Hasta aca bien
         navigator.notification.alert("success!888888888");
-        this.db.transaction(operacion, this.errorCB, this.successCB);
+        app.db.transaction(operacion, self.errorCB, self.successCB);
      },
 
  	 Crear_BD: function(tx){

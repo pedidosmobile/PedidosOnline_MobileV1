@@ -15,7 +15,7 @@
         //app.ExecQuery(app.Crear_BD);
 		
 		db = window.sqlitePlugin.openDatabase({name: "PedidosMobileDB.db"});
-        this.db.transaction(app.Crear_BD, self.errorCB, self.successCB);
+        this.db.transaction(app.Crear_BD, app.errorCB, app.successCB);
      }, 
 
      errorCB: function(err) {

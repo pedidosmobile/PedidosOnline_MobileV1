@@ -14,8 +14,8 @@
       
       navigator.notification.alert('You are the winner!');
 
-      db = window.sqlitePlugin.openDatabase({name: "PedidosMobileDB.db"});
-      self.Crear_Tablas();
+      //db = window.sqlitePlugin.openDatabase({name: "PedidosMobileDB.db"});
+      app.Crear_Tablas();
         // this.db.transaction(function(tx) {
         //      tx.executeSql('DROP TABLE IF EXISTS test_table2');
         //      tx.executeSql('CREATE TABLE IF NOT EXISTS test_table2 (id integer primary key, data text, data_num integer)');

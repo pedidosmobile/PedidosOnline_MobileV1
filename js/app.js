@@ -13,11 +13,12 @@
 
      onDeviceReady: function() { 
        navigator.notification.alert('You are the winner!');
-     // this.Conectar_BD();
-       //this.ExecuteQuery(this.Crear_BD);
+       //this.Conectar_BD();
+       //
 
-         this.db = window.sqlitePlugin.openDatabase({name: "PedidosMobileDB.db"});
-           navigator.notification.alert('You are the winner!');
+        this.db = window.sqlitePlugin.openDatabase({name: "PedidosMobileDB.db"});
+        this.ExecuteQuery(this.Crear_BD);
+        navigator.notification.alert('You are the winner!');
      }, 
      
      Conectar_BD: function() {

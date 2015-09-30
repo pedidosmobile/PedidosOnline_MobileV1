@@ -12,6 +12,7 @@
      },
 
      onDeviceReady: function() { 
+      
        navigator.notification.alert('You are the winner!');
        //this.Conectar_BD();
        //
@@ -27,7 +28,7 @@
            navigator.notification.alert("PRAGMA res: " + JSON.stringify(res));
         });
 
-        //navigator.notification.alert('You are the winner!');
+        navigator.notification.alert('You are the winner88888!');
      }, 
      
      Conectar_BD: function() {

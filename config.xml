@@ -30,13 +30,13 @@
       <param name="android-package" value="org.apache.cordova.vibration.Vibration" />
     </feature>
 
-   <access origin="http://riapira2289-001-site1.smarterasp.net"/>
-   <access origin="http://riapira2289-001-site1.smarterasp.net" subdomains="true" />
-   <access origin="http://riapira2289-001-site1.smarterasp.net" browserOnly="true" /> 
+   <access origin="http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList"/>
+   <access origin="http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList" subdomains="true" />
+   <access origin="http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList" browserOnly="true" /> 
   
-   <access origin="http://riapira2289-001-site1.smarterasp.net"/>
-   <access origin="http://riapira2289-001-site1.smarterasp.net" subdomains="true" />
-   <access origin="http://riapira2289-001-site1.smarterasp.net" browserOnly="true" /> 
+   <access origin="http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList"/>
+   <access origin="http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList" subdomains="true" />
+   <access origin="http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList" browserOnly="true" /> 
 
     <preference name="permissions" value="none"/>
 

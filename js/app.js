@@ -4,7 +4,7 @@
 
      // Application Constructor 
    initialize: function() { 
-  	 this.onDeviceReady(); 
+  	 this.bindEvents(); 
    }, 
 
    bindEvents: function() { 

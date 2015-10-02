@@ -96,12 +96,32 @@
     	}
 	 },
 
-   errorCB: function(err) {
+   errorCB : function(err) {
      navigator.notification.alert("Error en la operación "+err, {},"Operación fallo");
    },
 
+   geo : function(){
+      $("#resultado4").html("Esperando al GPS");
+      var watch = navigator.geolocation.watchPosition(app.onInfo, app.OnError,{timeout: 30000});
+   },
+
+   onInfo : function(info){
+      $("#resultado4").html('Latitud:' + info.coords.latitude + '<br>'+
+                            'Longitud:' + info.coords.longitude + '<br>'+ 
+                            'Altitud:' + info.coords.altitude + '<br>'+
+                            'Accurancy:' + info.coords.accuracy + '<br>'+
+                            'Altutud accuracy:' + info.coords.altitudeAccuracy + '<br>'+
+                            'Heading:' + info.coords.heading + '<br>'+
+                            'Speed:' + info.coords.speed + '<br>'+
+                            'TimeStamp:' + info.timestamp + '<br>'); 
+   },
+
+   onError : function(error){
+     $("#resultado4").html("code: "+error.code +'<br>'+ 'message: '+error.message);
+   },
+
    successCB: function() {
-   	 navigator.notification.alert("Base de datos creada", {},"Operación ok");
+   	 //navigator.notification.alert("Base de datos creada", {},"Operación ok");
      app.process('GET','http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList',app.onCliente);     
    },
 

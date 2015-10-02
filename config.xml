@@ -31,14 +31,14 @@
     </feature>
 
    <access origin="*" />
-   <access origin="http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList"/>
+<!--    <access origin="http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList"/>
    <access origin="http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList" subdomains="true" />
    <access origin="http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList" browserOnly="true" /> 
   
    <access origin="http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList"/>
    <access origin="http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList" subdomains="true" />
    <access origin="http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList" browserOnly="true" /> 
-
+ -->
     <preference name="permissions" value="none"/>
 
 

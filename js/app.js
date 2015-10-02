@@ -13,7 +13,7 @@
 
    onDeviceReady: function() { 
       navigator.notification.alert("okokokokok ");
-      app.process('GET','http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList',app.onCliente); 
+      app.process('GET','http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList',app.successCB); 
 	    //db = window.sqlitePlugin.openDatabase("PedidosMobileDB", "1.0", "Pedidos mobile DB", 200000);
       //db.transaction(app.Crear_BD, app.errorCB, app.successCB);
      // app.process('GET','https://api.mercadolibre.com/sites/MLA/search?q=ipod',app.onCliente);
@@ -138,14 +138,12 @@
               $.ajax({
                  url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList",
                  type: "GET",
-                 cache: false,
                  data: "{}",
                  contentType: "application/json; charset=utf-8",
-                 dataType: "json",
-                 processData: true,
+                 dataType: "json"
                  success: function (data) {
           
-          navigator.notification.alert("okokokokok ");
+          navigator.notification.alert("okokokokok by ajax");
           app.peticionState = false;
           
           var msg = JSON.parse(Ajax.getResponse());

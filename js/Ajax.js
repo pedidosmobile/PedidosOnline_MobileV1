@@ -32,28 +32,28 @@ Ajax.checkState = function(_IdElemento)
   switch(this.request.readyState)
   {
     case 0:
-      console.log('Sin inicializar ...');
-      //document.getElementById(_IdElemento).innerHTML = 'Sin inicializar ...';
+      //console.log('Sin inicializar ...');
+      document.getElementById(_IdElemento).innerHTML = 'Sin inicializar ...';
       break;
 
     case 1:
-      console.log('Cargando ...');
-      //document.getElementById(_IdElemento).innerHTML = 'Cargando ...';
+      //console.log('Cargando ...');
+      document.getElementById(_IdElemento).innerHTML = 'Cargando ...';
       break;
 
     case 2:
-      console.log('Cargado...');
-      //document.getElementById(_IdElemento).innerHTML = 'Cargado...';
+      //console.log('Cargado...');
+      document.getElementById(_IdElemento).innerHTML = 'Cargado...';
       break;
 
     case 3:
-      console.log('Interactivo...');
-      //document.getElementById(_IdElemento).innerHTML = 'Interactivo...';
+      //console.log('Interactivo...');
+      document.getElementById(_IdElemento).innerHTML = 'Interactivo...';
       break;
 
     case 4:
-      console.log('Listo');
-      //document.getElementById(_IdElemento).innerHTML = 'Listo';
+      //console.log('Listo');
+      document.getElementById(_IdElemento).innerHTML = 'Listo';
       app.peticionState=false;
       return this.request.status;
   }

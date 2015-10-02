@@ -29,7 +29,7 @@
    onCliente : function(){
       // Hacemos algo con la peticion ( feel free) ponga aqui su codigo
       //console.log("Ejecutando");
-      if(Ajax.checkState('loading') == 200){
+      if(Ajax.checkState('ped_cliente1') == 200){
           
           navigator.notification.alert("okokokokok ");
           app.peticionState = false;
@@ -52,7 +52,7 @@
    onSucursal : function(){
       // Hacemos algo con la peticion ( feel free) ponga aqui su codigo
       //console.log("Ejecutando");
-      if(Ajax.checkState('loading') == 200){
+      if(Ajax.checkState('ped_cliente1') == 200){
           app.peticionState = false;
           
           var msg = JSON.parse(Ajax.getResponse());
@@ -70,7 +70,7 @@
    onPtoEnvio : function(){
       // Hacemos algo con la peticion ( feel free) ponga aqui su codigo
       //console.log("Ejecutando");
-      if(Ajax.checkState('loading') == 200){
+      if(Ajax.checkState('ped_cliente1') == 200){
           app.peticionState = false;
           
           var msg = JSON.parse(Ajax.getResponse());
@@ -87,7 +87,7 @@
 	 onResponse : function(){
    		// Hacemos algo con la peticion ( feel free) ponga aqui su codigo
    		//console.log("Ejecutando");
-    	if(Ajax.checkState('loading') == 200){
+    	if(Ajax.checkState('ped_cliente1') == 200){
 	        app.peticionState = false;
 	        
           var msg = JSON.parse(Ajax.getResponse());

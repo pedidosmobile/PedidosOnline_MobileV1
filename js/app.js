@@ -14,7 +14,6 @@
    onDeviceReady: function() { 
 	    db = window.sqlitePlugin.openDatabase("PedidosMobileDB", "1.0", "Pedidos mobile DB", 200000);
       db.transaction(app.Crear_BD, app.errorCB, app.successCB);
-      app.process('GET','http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList',app.onCliente);
       //app.process('GET','https://api.mercadolibre.com/sites/MLA/search?q=ipod',"");
    },
 
@@ -30,6 +29,7 @@
    onCliente : function(){
       // Hacemos algo con la peticion ( feel free) ponga aqui su codigo
       //console.log("Ejecutando");
+      navigator.notification.alert("Error en la operación ");
       if(Ajax.checkState('loading') == 200){
           app.peticionState = false;
           
@@ -122,7 +122,7 @@
    },
 
    successCB: function() {
-   	 //navigator.notification.alert("Base de datos creada", {},"Operación ok");
+   	 navigator.notification.alert("Base de datos creada", {},"Operación ok");
      app.process('GET','http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList',app.onCliente);     
    },
 

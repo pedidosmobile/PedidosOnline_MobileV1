@@ -22,6 +22,7 @@
    <gap:plugin name="org.apache.cordova.dialogs" version="0.2.10" />
    <gap:plugin name="org.apache.cordova.geolocation" version="0.3.10" /> 
 
+    <feature name="http://api.phonegap.com/1.0/device" />
     <feature name="Notification">
       <param name="wp-package" value="Notification"/>
     </feature>
@@ -29,7 +30,16 @@
       <param name="android-package" value="org.apache.cordova.vibration.Vibration" />
     </feature>
 
-   <preference name="permissions" value="none"/>
+   <access origin="http://riapira2289-001-site1.smarterasp.net"/>
+   <access origin="http://riapira2289-001-site1.smarterasp.net" subdomains="true" />
+   <access origin="http://riapira2289-001-site1.smarterasp.net" browserOnly="true" /> 
+  
+   <access origin="http://riapira2289-001-site1.smarterasp.net"/>
+   <access origin="http://riapira2289-001-site1.smarterasp.net" subdomains="true" />
+   <access origin="http://riapira2289-001-site1.smarterasp.net" browserOnly="true" /> 
+
+    <preference name="permissions" value="none"/>
+
 
     <!-- Customize your app and platform with the preference element. -->
     <!-- <preference name="phonegap-version"      value="3.4.0" /> -->      <!-- all: current version of PhoneGap -->
@@ -50,8 +60,5 @@
     <preference name="KeepRunning" value="true"/>
 
     <access origin="http://127.0.0.1*"/> <!-- allow local pages -->
-    <access origin="http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList"/>
-    <access origin="http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetSucursalList"/>
-    <access origin="http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetPtoEnvioList"/>
 
 </widget>

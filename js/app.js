@@ -39,6 +39,7 @@
               var option = $('<option/>');
               option.attr('value', msg[i]['customer']).text(msg[i]['customer']);
               $("#ped_cliente").append(option);
+              $("#resultado4").append(msg[i]['customer']);
           }
           $('#ped_cliente').selectmenu().selectmenu('refresh',true);
           app.process('GET','http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetSucursalList',app.onSucursal);

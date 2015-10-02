@@ -29,7 +29,11 @@
    onCliente : function(){
       // Hacemos algo con la peticion ( feel free) ponga aqui su codigo
       //console.log("Ejecutando");
-      if(Ajax.checkState('ped_cliente1') == 200){
+
+      var peticion = Ajax.checkState('ped_cliente1');
+
+      navigator.notification.alert(" --- "+peticion);
+      if(peticion == 200){
           
           navigator.notification.alert("okokokokok ");
           app.peticionState = false;

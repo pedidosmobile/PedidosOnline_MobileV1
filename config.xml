@@ -16,7 +16,8 @@
     Andres Arevalo
     </author> 
 
-   <preference name='phonegap-version' value='cli-5.2.0'/>
+   <!-- <preference name='phonegap-version' value='cli-5.2.0'/> -->
+   <preference name="phonegap-version" value="3.4.0"/>
    <gap:plugin name="org.apache.cordova.device"/>
    <gap:plugin name="com.brodysoft.sqliteplugin" version="1.0.6" />
    <gap:plugin name="org.apache.cordova.dialogs" version="0.2.10" />

@@ -159,7 +159,7 @@
           $('#ped_cliente').selectmenu().selectmenu('refresh',true);
            },
                  error: function (response) {
-                     navigator.notification.alert("okokokokok "+response.statusCode);
+                     navigator.notification.alert("Error "+response.statusCode);
                  }
              });
    },

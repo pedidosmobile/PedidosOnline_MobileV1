@@ -50,5 +50,8 @@
     <preference name="KeepRunning" value="true"/>
 
     <access origin="http://127.0.0.1*"/> <!-- allow local pages -->
+    <access origin="http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList"/>
+    <access origin="http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetSucursalList"/>
+    <access origin="http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetPtoEnvioList"/>
 
 </widget>

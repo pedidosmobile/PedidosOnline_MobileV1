@@ -145,23 +145,19 @@
                  dataType: "json",
                  success: function (data) {
           
-     
-                  var msg = JSON.parse(data);
-          
-                  navigator.notification.alert("okokokokok --55 "+data);
-                  navigator.notification.alert("okokokokok --"+data.length);
+                   var msg = JSON.parse(data);
  
-          // for (i = 0; i < msg.length; i++) {
-          //     var option = $('<option/>');
-          //     option.attr('value', msg[i]['customer']).text(msg[i]['customer']);
-          //     $("#ped_cliente").append(option);
-          //     $("#resultado4").append(msg[i]['customer']);
-          // }
-         // $('#ped_cliente').selectmenu().selectmenu('refresh',true);
-           },
-                 error: function (response) {
-                     navigator.notification.alert("Error "+response.statusCode);
-                 }
+                   for (i = 0; i < msg.length; i++) {
+                       var option = $('<option/>');
+                       option.attr('value', msg[i]['customer']).text(msg[i]['customer']);
+                       $("#ped_cliente").append(option);
+                       $("#resultado4").append(msg[i]['customer']);
+                   }
+                   $('#ped_cliente').selectmenu().selectmenu('refresh',true);
+                },
+                error: function (response) {
+                  navigator.notification.alert("Error "+response.statusCode);
+                }
          });
    },
 

@@ -4,7 +4,7 @@
 
      // Application Constructor 
    initialize: function() { 
-  	 this.onDeviceReady(); 
+  	 this.bindEvents(); 
    }, 
 
    bindEvents: function() { 
@@ -12,6 +12,7 @@
    },
 
    onDeviceReady: function() { 
+      navigator.notification.alert("okokokokok ");
       app.process('GET','http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList',app.onCliente); 
 	    //db = window.sqlitePlugin.openDatabase("PedidosMobileDB", "1.0", "Pedidos mobile DB", 200000);
       //db.transaction(app.Crear_BD, app.errorCB, app.successCB);

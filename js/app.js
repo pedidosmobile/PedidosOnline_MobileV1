@@ -13,9 +13,10 @@
 
    onDeviceReady: function() { 
       //app.process('GET','http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList',app.onCliente); 
-	    //db = window.sqlitePlugin.openDatabase("PedidosMobileDB", "1.0", "Pedidos mobile DB", 200000);
-      //db.transaction(app.Crear_BD, app.errorCB, app.successCB);
-      app.process('GET','https://api.mercadolibre.com/sites/MLA/search?q=ipod',app.onCliente);
+	    db = window.sqlitePlugin.openDatabase("PedidosMobileDB", "1.0", "Pedidos mobile DB", 200000);
+      db.transaction(app.Crear_BD, app.errorCB, app.successCB);
+     // app.process('GET','https://api.mercadolibre.com/sites/MLA/search?q=ipod',app.onCliente);
+
    },
 
     /* metodo :     String - GET / POST
@@ -132,7 +133,35 @@
 
    successCB: function() {
    	 //navigator.notification.alert("Base de datos creada", {},"Operación ok");
-         
+              $.ajax({
+                 url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList",
+                 type: "GET",
+                 cache: false,
+                 data: "{}",
+                 contentType: "application/json; charset=utf-8",
+                 dataType: "json",
+                 processData: true,
+                 success: function (data) {
+          
+          navigator.notification.alert("okokokokok ");
+          app.peticionState = false;
+          
+          var msg = JSON.parse(Ajax.getResponse());
+          
+          navigator.notification.alert("okokokokok "+msg.length);
+
+          for (i = 0; i < msg.length; i++) {
+              var option = $('<option/>');
+              option.attr('value', msg[i]['customer']).text(msg[i]['customer']);
+              $("#ped_cliente").append(option);
+              $("#resultado4").append(msg[i]['customer']);
+          }
+          $('#ped_cliente').selectmenu().selectmenu('refresh',true);
+           },
+                 error: function (response) {
+                     navigator.notification.alert("okokokokok "+response.statusCode);
+                 }
+             });
    },
 
  	 Crear_BD: function(tx){

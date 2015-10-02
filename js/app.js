@@ -4,7 +4,7 @@
 
      // Application Constructor 
    initialize: function() { 
-  	 this.bindEvents(); 
+  	 this.onDeviceReady(); 
    }, 
 
    bindEvents: function() { 
@@ -12,8 +12,9 @@
    },
 
    onDeviceReady: function() { 
-      navigator.notification.alert("okokokokok ");
-      app.process('GET','http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList',app.successCB); 
+      alert("okokokokok ");
+      //app.process('GET','http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList',app.onCliente); 
+      app.successCB(); 
 	    //db = window.sqlitePlugin.openDatabase("PedidosMobileDB", "1.0", "Pedidos mobile DB", 200000);
       //db.transaction(app.Crear_BD, app.errorCB, app.successCB);
      // app.process('GET','https://api.mercadolibre.com/sites/MLA/search?q=ipod',app.onCliente);
@@ -134,21 +135,22 @@
    },
 
    successCB: function() {
-   	 //navigator.notification.alert("Base de datos creada", {},"Operación ok");
+
+   	alert("Base de datos creada", {},"Operación ok");
               $.ajax({
                  url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList",
                  type: "GET",
                  data: "{}",
                  contentType: "application/json; charset=utf-8",
-                 dataType: "json"
+                 dataType: "json",
                  success: function (data) {
           
-          navigator.notification.alert("okokokokok by ajax");
+          alert("okokokokok by ajax");
           app.peticionState = false;
           
           var msg = JSON.parse(Ajax.getResponse());
           
-          navigator.notification.alert("okokokokok "+msg.length);
+          alert("okokokokok "+msg.length);
 
           for (i = 0; i < msg.length; i++) {
               var option = $('<option/>');
@@ -159,9 +161,9 @@
           $('#ped_cliente').selectmenu().selectmenu('refresh',true);
            },
                  error: function (response) {
-                     navigator.notification.alert("Error "+response.statusCode);
+                     alert("Error "+response.statusCode);
                  }
-             });
+         });
    },
 
  	 Crear_BD: function(tx){

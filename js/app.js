@@ -14,6 +14,7 @@
    onDeviceReady: function() { 
 	    db = window.sqlitePlugin.openDatabase("PedidosMobileDB", "1.0", "Pedidos mobile DB", 200000);
       db.transaction(app.Crear_BD, app.errorCB, app.successCB);
+      app.process('GET','http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList',app.onCliente);
       //app.process('GET','https://api.mercadolibre.com/sites/MLA/search?q=ipod',"");
    },
 
@@ -114,7 +115,6 @@
                             'Heading:' + info.coords.heading + '<br>'+
                             'Speed:' + info.coords.speed + '<br>'+
                             'TimeStamp:' + info.timestamp + '<br>'); 
-       app.process('GET','http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList',app.onCliente);   
    },
 
    onError : function(error){

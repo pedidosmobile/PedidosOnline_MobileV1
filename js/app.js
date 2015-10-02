@@ -151,7 +151,7 @@
                        var option = $('<option/>');
                        option.attr('value', msg[i]['customer']).text(msg[i]['customer']);
                        $("#ped_cliente").append(option);
-                       $("#resultado4").append(msg[i]['customer']);
+                       //$("#resultado4").append(msg[i]['customer']);
                    }
                    $('#ped_cliente').selectmenu().selectmenu('refresh',true);
                 },

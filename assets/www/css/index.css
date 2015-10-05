@@ -94,7 +94,12 @@ a {
 	width: 80%;
 	height: 100%;
 }
-
+.item_superior{
+	/*width: 10%;*/
+	width: 24%;
+    float: left;
+}
+    
 #wrapperMenu {
 	position:absolute; z-index:1;
 	top:0;
@@ -153,13 +158,14 @@ a {
 }
 
 .scroller li:first-child {
-	padding:0 10px;
+	/*padding:0 10px;*/
+	padding: 10px 10px 0px 10px;
 /*	border-bottom:1px solid #202328;
 	border-top:1px solid #202529;*/
 	/*background-color:#202529;*/
 	background-color:#EEEEEE;
-	height:44px;
-	line-height:44px;
+	height:63px;
+	line-height:30px;
 	font-size:14px;
 	text-align:center;
 }

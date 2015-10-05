@@ -51,7 +51,6 @@ var app = {
     	// Ejecutamos la funci—n FastClick, que es la que nos elimina esos 300ms de espera al hacer click
     	new FastClick(document.body);
     },
-    
 };
 
 // Funci—n para a–adir clases css a elementos

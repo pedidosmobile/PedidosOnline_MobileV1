@@ -32,9 +32,10 @@ var app = {
 		document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
 
 		// Leemos por ajax el archivos menu.html de la carpeta opciones
-		xhReq.open("GET", "opciones/menu.html", false);
+		// xhReq.open("GET", "opciones/opcion"+opcionMenu+".html", false);
+		xhReq.open("GET", "opciones/opcionCRM.html", false);
 		xhReq.send(null);
-		document.getElementById("contenidoMenu").innerHTML=xhReq.responseText;
+		document.getElementById("ulMenu").innerHTML = xhReq.responseText;
 		
 		// Creamos los 2 scroll mediante el plugin iscroll, uno para el menœ principal y otro para el cuerpo
 		myScroll = new iScroll('wrapper', { hideScrollbar: true });

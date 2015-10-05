@@ -18,7 +18,7 @@ var app = {
 	    var heightCuerpo=window.innerHeight-46;
 	    var style = document.createElement('style');
 	    style.type = 'text/css';
-	    style.innerHTML = '.cssClass { position:absolute; z-index:2; left:0; top:46px; width:100%; height: '+heightCuerpo+'px; overflow:auto;}';
+	    style.innerHTML = '.cssClass { position:absolute; z-index:2; left:0; top:64px; width:100%; height: '+heightCuerpo+'px; overflow:auto;}';
 	    document.getElementsByTagName('head')[0].appendChild(style);
 	    
 	    // A–adimos las clases necesarias

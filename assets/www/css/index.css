@@ -25,36 +25,40 @@ a {
 	position:absolute; z-index:2;
 	top:0; left:0;
 	width:100%;
-	background: #118eba;
-	border-bottom: 1px solid #0e5771;
+	/*background: #118eba;*/
+	/*border-bottom: 1px solid #0e5771;*/
+	background: #1976D2;
+    border-bottom: #1976D2;
 	padding:0;
 	color:#eee;
 	font-size:14px;
 	line-height: 45px;
 	text-align:center;
-	height: 45px;
+	height: 63px;
 }
 
 #header .btn {
     position: absolute;
-    top: 5px;
+    /*top: 5px;*/
+    top: 15px;
     left: 5px;
     width:17%;
     line-height: 36px;
-    background-color:#46b7f1;
+    background-color:#1976D2;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 }
 
 #header .btn:active {
-    background-color:#0f6f91;
+    /*background-color:#0f6f91;*/
 }
 
 .logo{
 	height:32px; 
 	width:auto; 
-	margin-top:6px
+	margin-top:6px;
+	font-size: 19px;
 }
 /*Fin estilos de la cabecera*/
 

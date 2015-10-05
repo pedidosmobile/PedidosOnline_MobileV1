@@ -1,5 +1,5 @@
 // Declaración de variables globales
-var myScroll, myScrollMenu, cuerpo, menuprincipal, wrapper, estado;
+var myScroll, myScrollMenu, cuerpo, menuprincipal, wrapper, estado, opcionMenu = "CRM";
 
 // Guardamos en variables elementos para poder rescatarlos después sin tener que volver a buscarlos
 cuerpo = document.getElementById("cuerpo"),
@@ -27,7 +27,7 @@ var app = {
 		wrapper.className = 'cssClass';
 			
 		// Leemos por ajax el archivos opcion1.html de la carpeta opciones
-		xhReq.open("GET", "opciones/opcion1.html", false);
+		xhReq.open("GET", "opciones/"+opcionMenu+"/opcion1.html", false);
 		xhReq.send(null);
 		document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
 
@@ -94,6 +94,7 @@ function menu(opcion){
   	   //Reemplazamos el HTML por uno nuevo
        var lista = document.getElementById("ulMenu");
        lista.innerHTML = xhReq.responseText;
+       opcionMenu = opcion;
 
 	   ////var selectBox = document.getElementById('ulMenu');
        ////var items = selectBox.getElementsByTagName('LI');
@@ -105,26 +106,27 @@ function menu(opcion){
 		// console.log("---- "+items[i].innerHTML);
        //}
     }
-	else{	
-		// Añadimos la clase al li presionado
-		addClass('li-menu-activo' , document.getElementById("ulMenu").getElementsByTagName("li")[opcion]);
+}
+
+function submenu(opcion){
+    // Añadimos la clase al li presionado
+	addClass('li-menu-activo' , document.getElementById("ulMenu").getElementsByTagName("li")[opcion]);
 		
-		// Recogemos mediante ajax el contenido del html según la opción clickeada en el menu
-		xhReq.open("GET", "opciones/opcion"+opcion+".html", false);
-		xhReq.send(null);
-		document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
+	// Recogemos mediante ajax el contenido del html según la opción clickeada en el menu
+	xhReq.open("GET", "opciones/"+opcionMenu+"/opcion"+opcion+".html", false);
+	xhReq.send(null);
+	document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
 		
 		// Refrescamos el elemento iscroll según el contenido ya añadido mediante ajax, y hacemos que se desplace al top
-		myScroll.refresh();
-		myScroll.scrollTo(0,0);
+	myScroll.refresh();
+	myScroll.scrollTo(0,0);
 		
-		// Añadimos las clases necesarias para que la capa cuerpo se mueva al centro de nuestra app y muestre el contenido
-		cuerpo.className = 'page transition center';
-		estado="cuerpo";
+	// Añadimos las clases necesarias para que la capa cuerpo se mueva al centro de nuestra app y muestre el contenido
+	cuerpo.className = 'page transition center';
+	estado="cuerpo";
 		
-		// Quitamos la clase añadida al li que hemos presionado
-		setTimeout(function() {
-			removeClass('li-menu-activo' , document.getElementById("ulMenu").getElementsByTagName("li")[opcion]);
-		}, 300);
-	 }
+	// Quitamos la clase añadida al li que hemos presionado
+	setTimeout(function() {
+		removeClass('li-menu-activo' , document.getElementById("ulMenu").getElementsByTagName("li")[opcion]);
+	}, 300);
 }

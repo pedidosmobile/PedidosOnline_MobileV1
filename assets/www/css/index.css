@@ -185,7 +185,9 @@ a {
 
 
 .li-menu-activo{
-	background-color:#323a40 !important;
+	/*background-color:#323a40 !important;*/
+	color: #2196F3 !important;
+	font-weight: bold; 	
 }
 
 .scroller li a{

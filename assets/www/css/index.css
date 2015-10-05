@@ -157,17 +157,20 @@ a {
 	text-align:left;
 }
 
-.scroller li:first-child {
+/*.scroller li:first-child*/
+ .menu-principal
+ {
 	/*padding:0 10px;*/
 	padding: 10px 10px 0px 10px;
 /*	border-bottom:1px solid #202328;
 	border-top:1px solid #202529;*/
 	/*background-color:#202529;*/
 	background-color:#EEEEEE;
-	height:63px;
-	line-height:30px;
+	height:54px;
+	line-height:26px;
 	font-size:14px;
 	text-align:center;
+	color: #757575;
 }
 
 .scroller li {

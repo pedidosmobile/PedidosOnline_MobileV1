@@ -74,19 +74,38 @@ function removeClass( classname, element ) {
 }
 
 function menu(opcion){
-	
 	// Si pulsamos en el bot—n de "menu" entramos en el if
 	if(opcion=="menu"){
 		if(estado=="cuerpo"){
 			cuerpo.className = 'page transition right';
 			estado="menuprincipal";
-		}else if(estado=="menuprincipal"){
+		} else if(estado=="menuprincipal"){
 			cuerpo.className = 'page transition center';
 			estado="cuerpo";	
 		}
 	// Si pulsamos un bot—n del menu principal entramos en el else
-	}else{
-		
+	}
+	else if(opcion.match(/[a-zA-Z]/i))
+    {
+       //Obtenemos el submenu que se agregara en la parte inferior del menu lateral ejem: opcionCRM
+       xhReq.open("GET", "opciones/opcion"+opcion+".html", false);
+       xhReq.send(null);
+
+  	   //Reemplazamos el HTML por uno nuevo
+       var lista = document.getElementById("ulMenu");
+       lista.innerHTML = xhReq.responseText;
+
+	   ////var selectBox = document.getElementById('ulMenu');
+       ////var items = selectBox.getElementsByTagName('LI');
+       // var items = document.querySelectorAll('#ulMenu li:nth-child(n+2)');
+       
+       //selectBox.innerHTML = xhReq.responseText;
+       	
+       //for(i=0; i<items.length; i++) {
+		// console.log("---- "+items[i].innerHTML);
+       //}
+    }
+	else{	
 		// A–adimos la clase al li presionado
 		addClass('li-menu-activo' , document.getElementById("ulMenu").getElementsByTagName("li")[opcion]);
 		
@@ -107,7 +126,5 @@ function menu(opcion){
 		setTimeout(function() {
 			removeClass('li-menu-activo' , document.getElementById("ulMenu").getElementsByTagName("li")[opcion]);
 		}, 300);
-		 
 	 }
-
 }

@@ -1,6 +1,6 @@
 
 body{
- background: #f9f9f9;
+ background: #FFFFFF;
  font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
 }
 #contenidoCuerpo{
@@ -33,12 +33,9 @@ h1 {
 	width: 33.3%;
 	text-align: center;
 }
-#container_tabs label:nth-child(6) {
-  width: 32% !important; /*Se agrega al componente de la mitad un % mayor para completar el 100%*/
-}
-#container_tabs input:hover + label {
-	background: #ddd;  /* Fondo de las pestañas al pasar el cursor por encima */
-	color: #666;  /* Color del texto de las pestañas al pasar el cursor por encima */
+/*Tambien es posible utilizar input:hover + label*/
+#container_tabs input:checked + label{
+    color: #000;
 }
 #container_tabs input:checked + label>div {
 	width: 100%;
@@ -46,7 +43,7 @@ h1 {
     background-color: #03A9F4;
 }
 #content {
-	background: #F9F9F9;  /* Fondo del contenido */
+	background: #FFFFFF;  /* Fondo del contenido */
 	border-radius: 0 .25em .25em .25em;
 	min-height: 20em;  /* Alto del contenido */
 	position: relative;

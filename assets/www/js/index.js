@@ -9,6 +9,7 @@ wrapper = document.getElementById("wrapper");
 var xhReq = new XMLHttpRequest();
 
 var app = {
+
     // Constructor de la app
     initialize: function() {
     	// Estado inicial mostrando capa cuerpo
@@ -27,8 +28,7 @@ var app = {
 		wrapper.className = 'cssClass';
 			
 		// Leemos por ajax el archivos opcion1.html de la carpeta opciones
-		// xhReq.open("GET", "opciones/"+opcionMenu+"/opcion1.html", false);
-		xhReq.open("GET", "opciones/VENTAS/opcion2.html", false);
+		xhReq.open("GET", "opciones/"+opcionMenu+"/opcion1.html", false);
 		xhReq.send(null);
 		document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
 
@@ -42,17 +42,61 @@ var app = {
 		myScroll = new iScroll('wrapper', { hideScrollbar: true });
 		myScrollMenu = new iScroll('wrapperMenu', { hideScrollbar: true });
 	
-        this.bindEvents();
+        //this.bindEvents();
+        this.onDeviceReady();
     },
 
     bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
+        //document.addEventListener('deviceready', this.onDeviceReady, false);
     },
 
     onDeviceReady: function() {
     	// Ejecutamos la funci—n FastClick, que es la que nos elimina esos 300ms de espera al hacer click
     	new FastClick(document.body);
+    	this.successCB();
     },
+    successCB: function() {
+
+    alert("Base de datos creada", {},"Operación ok");
+              $.ajax({
+                 url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList",
+                 type: "GET",
+                 data: "{}",
+                 contentType: "application/json; charset=utf-8",
+                 dataType: "json",
+                 success: function (data) {
+          
+                   var msg = JSON.parse(data);
+ 
+                   var lista = $('<ul/>');
+
+                     for (var i in msg) {
+                         lista.append(
+
+                             $('<li/>').append(
+                                $('<div/>').addClass('list_client').append(
+                                    $('<div/>').addClass('borde-menu color1')).append(
+                                    $('<p/>').text(msg[i]['customer']))
+                                )
+                             )
+                     }
+                     
+                     $("#divClientes").append(lista);
+
+                   for (i = 0; i < msg.length; i++) {
+                   	console.log(msg[i]['customer']);
+                       //var option = $('<option/>');
+                       //option.attr('value', msg[i]['customer']).text(msg[i]['customer']);
+                       //$("#ped_cliente").append(option);
+                       //$("#resultado4").append(msg[i]['customer']);
+                   }
+                  // $('#ped_cliente').selectmenu().selectmenu('refresh',true);
+                },
+                error: function (response) {
+                  alert("Error "+response.statusCode);
+                }
+         });
+   },
 };
 
 // Funci—n para a–adir clases css a elementos
@@ -117,9 +161,6 @@ function submenu(opcion){
 	// Recogemos mediante ajax el contenido del html segœn la opci—n clickeada en el menu
 	xhReq.open("GET", "opciones/"+opcionMenu+"/opcion"+opcion+".html", false);
 	xhReq.send(null);
-
-	console.log(xhReq.responseText);
-
 	document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
 		
 		// Refrescamos el elemento iscroll segœn el contenido ya a–adido mediante ajax, y hacemos que se desplace al top

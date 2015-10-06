@@ -27,7 +27,8 @@ var app = {
 		wrapper.className = 'cssClass';
 			
 		// Leemos por ajax el archivos opcion1.html de la carpeta opciones
-		xhReq.open("GET", "opciones/"+opcionMenu+"/opcion1.html", false);
+		// xhReq.open("GET", "opciones/"+opcionMenu+"/opcion1.html", false);
+		xhReq.open("GET", "opciones/VENTAS/opcion2.html", false);
 		xhReq.send(null);
 		document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
 
@@ -116,6 +117,9 @@ function submenu(opcion){
 	// Recogemos mediante ajax el contenido del html segœn la opci—n clickeada en el menu
 	xhReq.open("GET", "opciones/"+opcionMenu+"/opcion"+opcion+".html", false);
 	xhReq.send(null);
+
+	console.log(xhReq.responseText);
+
 	document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
 		
 		// Refrescamos el elemento iscroll segœn el contenido ya a–adido mediante ajax, y hacemos que se desplace al top

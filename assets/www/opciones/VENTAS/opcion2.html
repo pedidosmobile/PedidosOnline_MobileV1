@@ -26,31 +26,43 @@
 	<!--Contenido a mostrar/ocultar-->
 	<div id="content">
 		<!--Contenido de la Pestaña 1-->
-			<div id="content-1">
+		<div id="content-1">
+
+			<span>Pedido Nro. <strong>1245</strong></span>
+			<span>Fecha: <strong>25/12/2015</strong></span>
+
 			    <!-- <input type="text" value="" name="txt_cliente" id="Ped_Cliente"/> -->
-				<input type="text" name="srch" id="srch" list="datalist1">
-					<datalist id="datalist1">
-  							<option value="Canada">
-  							<option value="China">
-  							<option value="Mexico">
-  							<option value="United Kingdom">
-							<option value="United States of America">
-							<option value="Uruguay">
-					</datalist>
+			<input type="text" list="list_cliente" name="txt_cliente" placeholder="Cliente"/>
+			<datalist id="list_cliente">
+    			<option value="India">India</option>
+			    <option value="United States">United States</option>
+			    <option value="United Kingdom">United Kingdom</option>
+			    <option value="Germany">Germany</option>
+			    <option value="France">France</option>
+			</datalist>
 
-					<select>
-						  <option value="volvo">Volvo</option>
-						  <option value="saab">Saab</option>
-						  <option value="mercedes">Mercedes</option>
-						  <option value="audi">Audi</option>
-					</select>
+			<input type="text" list="list_sucursal" name="txt_sucursal" placeholder="Sucursal"/>
+			<datalist id="list_sucursal">
+    			<option value="India">India</option>
+			    <option value="United States">United States</option>
+			    <option value="United Kingdom">United Kingdom</option>
+			    <option value="Germany">Germany</option>
+			    <option value="France">France</option>
+			</datalist>
 
+			<input type="text" list="list_ptoEnvio" name="txt_PtoEnvio" placeholder="Punto de envío"/>
+			<datalist id="list_ptoEnvio">
+    			<option value="India">India</option>
+			    <option value="United States">United States</option>
+			    <option value="United Kingdom">United Kingdom</option>
+			    <option value="Germany">Germany</option>
+			    <option value="France">France</option>
+			</datalist>
 
-			  <!-- <input type="text" value="" name="txt_sucursal" id="Ped_Sucursal"/>
-			  <input type="text" value="" name="txt_PtoEnvio" id="Ped_PtoEnvio"/>
-		      <input type="date" name="date_Entrega" id="Ped_fechaEntrega">
-              <textarea cols="40" rows="8" name="txt_observacion" id="ped_Observa"></textarea> -->
-	        </div>
+		    <input type="date" name="date_Entrega" id="Ped_fechaEntrega" placeholder="Fecha entrega">
+            
+            <textarea cols="40" rows="8" name="txt_observacion" id="ped_Observa" placeholder="Observaciones"></textarea>
+	    </div>
 	        <!--Contenido de la Pestaña 2-->
 	        <div id="content-2">
 	        	Contenido2

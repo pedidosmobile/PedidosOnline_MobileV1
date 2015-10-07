@@ -55,13 +55,22 @@ h1 {
 	padding: 1.5em;
 	position: absolute;
 	z-index: -100;
+	width: 100%;
+	padding-left: 0px;
+    padding-right: 0px;
 }
-#content div input{
+#content div input,textarea{
 	visibility: visible;
-	height: 50px;
-    width: 150px;
-    margin: 0px;
-    padding: 0px;
+    height: 45px;
+    padding-left: 8px;
+    border: 1px;
+    border-style: solid;
+    border-color: #B6B6B6;
+    width: 90%;
+    font-size: 18px;
+    margin: auto;
+    display: block;
+    margin-top: 15px;
 }
 #content-1 p {
 	clear: both;
@@ -73,6 +82,16 @@ h1 {
 }
 #content-1 p.last {
 	margin-bottom: 0;
+}
+#content-1 span:first-child{
+    margin-left: 5%;
+    float: left;
+    margin-bottom: 20px;
+}
+#content-1 span:last-of-type{
+    float: right;
+    margin-right: 5%;
+    margin-bottom: 20px;
 }
 #content-2 p {
 	float: left;

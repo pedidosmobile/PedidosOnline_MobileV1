@@ -56,6 +56,13 @@ h1 {
 	position: absolute;
 	z-index: -100;
 }
+#content div input{
+	visibility: visible;
+	height: 50px;
+    width: 150px;
+    margin: 0px;
+    padding: 0px;
+}
 #content-1 p {
 	clear: both;
 	margin-bottom: 1em;

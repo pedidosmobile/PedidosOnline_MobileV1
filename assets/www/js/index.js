@@ -183,11 +183,11 @@ function GetListaPedidos() {
 
                      var dataparse = JSON.parse(data);
 
-                     console.log(dataparse);
+                     //console.log(dataparse);
 
                      var x = 1;
 
-                     var lista = $('<div/>');
+                     var lista = $('#divPedidos');
 
                      var status;
                      //for (var i in dataparse) {

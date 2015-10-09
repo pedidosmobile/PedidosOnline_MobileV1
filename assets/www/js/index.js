@@ -58,7 +58,7 @@ var app = {
     },
     successCB: function() {
 
-    alert("Base de datos creada", {},"Operación ok");
+    //alert("Base de datos creada", {},"Operación ok");
 
         $('#hero-demo').autoComplete({
            minChars: 1,
@@ -68,7 +68,7 @@ var app = {
               var suggestions = [];
                 
               for(i=0;i<choices.length;i++){
-	   		      if (~choices[i].toLowerCase().indexOf(term)){ suggestions.push(choices[i]);}
+	    	      if (~choices[i].toLowerCase().indexOf(term)){ suggestions.push(choices[i]);}
               }
               suggest(suggestions);
             }

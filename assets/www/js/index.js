@@ -29,7 +29,7 @@ var app = {
 			
 		// Leemos por ajax el archivos opcion1.html de la carpeta opciones
 		//xhReq.open("GET", "opciones/"+opcionMenu+"/opcion1.html", false);
-		xhReq.open("GET", "opciones/CRM/opcion2.html", false);
+		xhReq.open("GET", "opciones/VENTAS/opcion2.html", false);
 		xhReq.send(null);
 		document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
 
@@ -60,50 +60,72 @@ var app = {
 
     //alert("Base de datos creada", {},"Operación ok");
 
-        var xhr;
-		var select_state, $select_state;
-		var select_city, $select_city;
+  	var availableTags = [
+    	  "ActionScript",
+      	  "AppleScript",
+      	  "Asp",
+      	  "BASIC",
+      	  "C",
+          "C++",
+          "Clojure",
+          "COBOL",
+          "ColdFusion",
+          "Erlang",
+          "Fortran",
+          "Groovy",
+          "Haskell",
+          "Java",
+          "JavaScript",
+          "Lisp",
+          "Perl",
+          "PHP",
+          "Python",
+          "Ruby",
+          "Scala",
+          "Scheme"
+     ];
 
-		$select_state = $('#select-state').selectize();
-
-          $.ajax({
-                 url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList",
-                 type: "GET",
-                 data: "{}",
-                 contentType: "application/json; charset=utf-8",
-                 dataType: "json",
-                 success: function (data) {
+    $("#tags").autocomplete({
+      source: availableTags
+    });
+         //  $.ajax({
+         //         url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList",
+         //         type: "GET",
+         //         data: "{}",
+         //         contentType: "application/json; charset=utf-8",
+         //         dataType: "json",
+         //         success: function (data) {
           
-                   var msg = JSON.parse(data);
+         //           var msg = JSON.parse(data);
  
-                   var lista = $('<ul/>');
+         //           var lista = $('<ul/>');
 
-                     for (var i in msg) {
-                         lista.append(
+         //             for (var i in msg) {
+         //                 lista.append(
 
-                             $('<li/>').append(
-                                $('<div/>').addClass('list_client').append(
-                                    $('<div/>').addClass('borde-menu color1')).append(
-                                    $('<p/>').text(msg[i]['customer']))
-                                )
-                             )
-                     }
+         //                     $('<li/>').append(
+         //                        $('<div/>').addClass('list_client').append(
+         //                            $('<div/>').addClass('borde-menu color1')).append(
+         //                            $('<p/>').text(msg[i]['customer']))
+         //                        )
+         //                     )
+         //             }
                      
-                     $("#divClientes").append(lista);
+         //             $("#divClientes").append(lista);
 
-                   for (i = 0; i < msg.length; i++) {
-                   	console.log(msg[i]['customer']);
-                       //var option = $('<option/>');
-                       //option.attr('value', msg[i]['customer']).text(msg[i]['customer']);
-                       //$("#ped_cliente").append(option);
-                       //$("#resultado4").append(msg[i]['customer']);
-                   }
-                  // $('#ped_cliente').selectmenu().selectmenu('refresh',true);
-                },
-                error: function (response) {
-                  alert("Error "+response.statusCode);
-                }
-         });
+         //           for (i = 0; i < msg.length; i++) {
+         //           	console.log(msg[i]['customer']);
+         //               //var option = $('<option/>');
+         //               //option.attr('value', msg[i]['customer']).text(msg[i]['customer']);
+         //               //$("#ped_cliente").append(option);
+         //               //$("#resultado4").append(msg[i]['customer']);
+         //           }
+         //          // $('#ped_cliente').selectmenu().selectmenu('refresh',true);
+         //        },
+         //        error: function (response) {
+         //          alert("Error "+response.statusCode);
+         //        }
+         // });
    },
 };
 

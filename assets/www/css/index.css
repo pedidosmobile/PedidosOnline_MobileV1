@@ -10,7 +10,7 @@ body {
     padding:0;
 	margin:0;
 	border:0;
-	position: fixed;
+	position: absolute;
 }
 
 a {
@@ -25,6 +25,8 @@ a {
 	position:absolute; z-index:2;
 	top:0; left:0;
 	width:100%;
+	/*background: #118eba;*/
+	/*border-bottom: 1px solid #0e5771;*/
 	background: #1976D2;
     border-bottom: #1976D2;
 	padding:0;
@@ -48,8 +50,8 @@ a {
 	border-radius: 3px;
 }
 
-#content div input{
-
+#header .btn:active {
+    /*background-color:#0f6f91;*/
 }
 
 .logo{
@@ -72,6 +74,10 @@ a {
 	font-size:20px;
 	line-height:30px
 }
+/*
+#cuerpo #wrapper{
+	overflow: initial !important;
+}*/
 
 .borde-h1{
 	width:5px;
@@ -106,6 +112,8 @@ a {
 	width:100%;
 	overflow:auto;
 }
+
+
 
 .borde-menu{
 	width:10px;
@@ -159,7 +167,11 @@ a {
 /*.scroller li:first-child*/
  .menu-principal
  {
+	/*padding:0 10px;*/
 	padding: 10px 10px 0px 10px;
+/*	border-bottom:1px solid #202328;
+	border-top:1px solid #202529;*/
+	/*background-color:#202529;*/
 	background-color:#EEEEEE;
 	height:54px;
 	line-height:26px;
@@ -169,7 +181,11 @@ a {
 }
 
 .scroller li {
+  /*border-bottom:1px solid #202328;
+	border-top:1px solid #202529;*/
+	/*background-color:#181c1f;*/
 	height:88px;
+	/*color:#fff*/
     color:#757575;
     padding-left: 15px;
     margin-bottom: 10px;
@@ -177,6 +193,7 @@ a {
 
 
 .li-menu-activo{
+	/*background-color:#323a40 !important;*/
 	color: #2196F3 !important;
 	font-weight: bold; 	
 }
@@ -190,13 +207,16 @@ a {
 	width:100%;
 	padding-top:20px;
 	font-size:16px;
+	/*text-shadow: 0 1px #000;*/
 }
 
 .scroller li .descripcion{
 	width:100%; 
 	padding-top:10px;
+	/*color:#6e7679;*/
 	color:#757575;
 	font-size:12px;
+	/*text-shadow: 0 1px #000;*/
 	padding-bottom:25px
 }
 /*Fin estilos de las capas internas de los iscroll, tanto cuerpo como menu*/
@@ -232,5 +252,7 @@ a {
 	background-color: #E8E8E8;
 	height:100%;
 	width:100%;
+
 }
+
 /*Fin c—digo de posici—n y transici—n de las p‡ginas*/

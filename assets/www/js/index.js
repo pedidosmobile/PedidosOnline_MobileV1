@@ -19,7 +19,7 @@ var app = {
 	    var heightCuerpo=window.innerHeight-46;
 	    var style = document.createElement('style');
 	    style.type = 'text/css';
-	    style.innerHTML = '.cssClass { position:absolute; z-index:2; left:0; top:64px; width:100%; height: '+heightCuerpo+'px; overflow:auto;}';
+	    style.innerHTML = '.cssClass { position:absolute; z-index:2; left:0; top:64px; width:100%; height: '+heightCuerpo+'px;}';
 	    document.getElementsByTagName('head')[0].appendChild(style);
 	    
 	    // A–adimos las clases necesarias
@@ -28,8 +28,7 @@ var app = {
 		wrapper.className = 'cssClass';
 			
 		// Leemos por ajax el archivos opcion1.html de la carpeta opciones
-		//xhReq.open("GET", "opciones/"+opcionMenu+"/opcion1.html", false);
-		xhReq.open("GET", "opciones/VENTAS/opcion2.html", false);
+		xhReq.open("GET", "opciones/"+opcionMenu+"/opcion1.html", false);
 		xhReq.send(null);
 		document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
 
@@ -99,14 +98,7 @@ var app = {
                      
                      $("#divClientes").append(lista);
 
-                   for (i = 0; i < msg.length; i++) {
-                   	console.log(msg[i]['customer']);
-                       //var option = $('<option/>');
-                       //option.attr('value', msg[i]['customer']).text(msg[i]['customer']);
-                       //$("#ped_cliente").append(option);
-                       //$("#resultado4").append(msg[i]['customer']);
-                   }
-                  // $('#ped_cliente').selectmenu().selectmenu('refresh',true);
+                   
                 },
                 error: function (response) {
                   alert("Error "+response.statusCode);
@@ -192,3 +184,58 @@ function submenu(opcion){
 		removeClass('li-menu-activo' , document.getElementById("ulMenu").getElementsByTagName("li")[opcion]);
 	}, 300);
 }
+
+function GetListaPedidos() {
+             $.ajax({
+                 url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetListaPedidos",
+                 type: "GET",
+                 cache: false,
+                 data: "{}",
+                 contentType: "application/json; charset=utf-8",
+                 dataType: "json",
+                 processData: true,
+                 success: function (data) {
+
+                     var dataparse = JSON.parse(data);
+
+                     //console.log(dataparse);
+
+                     var x = 1;
+
+                     var lista = $('#divPedidos');
+
+                     var status;
+                     //for (var i in dataparse) {
+                     for (i = 0; i < dataparse.length; i++) {
+                     	
+                     	if(i%2 == 0)	
+                        	status = $('<i/>').addClass('great')
+                        else
+                        	status = $('<i/>').addClass('warning')
+
+                         lista.append(
+                              $('<a/>').addClass('button color' + x).append(
+                                 $('<span/>').text('Nro. PEDIDO: ' + dataparse[i]['Nro_Pedido']).addClass('meta expiry'),
+                                 status,
+                                 $('<span/>').text('FECHA: ' + dataparse[i]['Fecha_Pedido']).addClass('meta date'),
+                                 $('<span/>').text(dataparse[i]['Empresa']).addClass('item'),
+                                 $('<span/>').text('SUCURSAL: ' + dataparse[i]['Sucursal']).addClass('meta expiry'),
+                                 $('<span/>').text('$' + dataparse[i]['Valor']).addClass('meta cost'),
+                                 $('<i/>').addClass('chevron')
+                             )
+                             )
+                         
+                         x = x + 1;
+                         if (x == 5)
+                             x = 1;
+                     }
+
+                     $("#divPedidos").append(lista);
+
+                 },
+                 error: function (response) {
+                     console.log("Error");
+                     console.log(response.statusCode);
+                 }
+             });
+         }

@@ -39,9 +39,9 @@ var app = {
 		document.getElementById("ulMenu").innerHTML = xhReq.responseText;
 		
 		// Creamos los 2 scroll mediante el plugin iscroll, uno para el menœ principal y otro para el cuerpo
-		myScroll = new iScroll('wrapper', { hideScrollbar: true });
+		//myScroll = new iScroll('wrapper', { hideScrollbar: true });
 		myScrollMenu = new iScroll('wrapperMenu', { hideScrollbar: true });
-	
+
         //this.bindEvents();
         this.onDeviceReady();
     },
@@ -155,7 +155,8 @@ function submenu(opcion){
 	xhReq.open("GET", "opciones/"+opcionMenu+"/opcion"+opcion+".html", false);
 	xhReq.send(null);
 	document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
-		
+	
+    myScroll = new iScroll('wrapper', { hideScrollbar: true });	
 		// Refrescamos el elemento iscroll segœn el contenido ya a–adido mediante ajax, y hacemos que se desplace al top
 	myScroll.refresh();
 	myScroll.scrollTo(0,0);
@@ -184,7 +185,7 @@ function GetListaPedidos() {
                      var dataparse = JSON.parse(data);
 
                      //console.log(dataparse);
-
+                     myScroll = new iScroll('wrapper', { hideScrollbar: false });
                      var x = 1;
 
                      var lista = $('#divPedidos');

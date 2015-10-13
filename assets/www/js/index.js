@@ -22,7 +22,7 @@ var app = {
 	    var heightCuerpo=window.innerHeight-46;
 	    var style = document.createElement('style');
 	    style.type = 'text/css';
-	    style.innerHTML = '.cssClass { position:absolute; z-index:2; left:0; top:64px; width:100%; height: '+heightCuerpo+'px; overflow:auto;}';
+	    style.innerHTML = '.cssClass { position:absolute; z-index:2; left:0; top:64px; width:100%; height: '+heightCuerpo+'px;}';
 	    document.getElementsByTagName('head')[0].appendChild(style);
 	    
 	    // A–adimos las clases necesarias
@@ -31,8 +31,7 @@ var app = {
 		wrapper.className = 'cssClass';
 			
 		// Leemos por ajax el archivos opcion1.html de la carpeta opciones
-		//xhReq.open("GET", "opciones/"+opcionMenu+"/opcion1.html", false);
-		xhReq.open("GET", "opciones/VENTAS/opcion2.html", false);
+		xhReq.open("GET", "opciones/"+opcionMenu+"/opcion1.html", false);
 		xhReq.send(null);
 		document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
 
@@ -43,9 +42,9 @@ var app = {
 		document.getElementById("ulMenu").innerHTML = xhReq.responseText;
 		
 		// Creamos los 2 scroll mediante el plugin iscroll, uno para el menœ principal y otro para el cuerpo
-		myScroll = new iScroll('wrapper', { hideScrollbar: true });
+		//myScroll = new iScroll('wrapper', { hideScrollbar: true });
 		myScrollMenu = new iScroll('wrapperMenu', { hideScrollbar: true });
-	
+
         //this.bindEvents();
         this.onDeviceReady();
     },
@@ -68,7 +67,6 @@ var app = {
         alert("Error en la operación "+err, {},"Operación fallo");
     },
 
-<<<<<<< HEAD
     successCB: function() {
     alert("Base de datos creada", {},"Operación ok");
               $.ajax({
@@ -78,76 +76,30 @@ var app = {
                  contentType: "application/json; charset=utf-8",
                  dataType: "json",
                  success: function (data) {
-=======
-    //alert("Base de datos creada", {},"Operación ok");
-
-  	var availableTags = [
-    	  "ActionScript",
-      	  "AppleScript",
-      	  "Asp",
-      	  "BASIC",
-      	  "C",
-          "C++",
-          "Clojure",
-          "COBOL",
-          "ColdFusion",
-          "Erlang",
-          "Fortran",
-          "Groovy",
-          "Haskell",
-          "Java",
-          "JavaScript",
-          "Lisp",
-          "Perl",
-          "PHP",
-          "Python",
-          "Ruby",
-          "Scala",
-          "Scheme"
-     ];
-
-    $("#tags").autocomplete({
-      source: availableTags
-    });
-         //  $.ajax({
-         //         url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList",
-         //         type: "GET",
-         //         data: "{}",
-         //         contentType: "application/json; charset=utf-8",
-         //         dataType: "json",
-         //         success: function (data) {
->>>>>>> origin/master
           
-         //           var msg = JSON.parse(data);
+                   var msg = JSON.parse(data);
  
-         //           var lista = $('<ul/>');
+                   var lista = $('<ul/>');
 
-         //             for (var i in msg) {
-         //                 lista.append(
+                     for (var i in msg) {
+                         lista.append(
 
-         //                     $('<li/>').append(
-         //                        $('<div/>').addClass('list_client').append(
-         //                            $('<div/>').addClass('borde-menu color1')).append(
-         //                            $('<p/>').text(msg[i]['customer']))
-         //                        )
-         //                     )
-         //             }
+                             $('<li/>').append(
+                                $('<div/>').addClass('list_client').append(
+                                    $('<div/>').addClass('borde-menu color1')).append(
+                                    $('<p/>').text(msg[i]['customer']))
+                                )
+                             )
+                     }
                      
-         //             $("#divClientes").append(lista);
+                     $("#divClientes").append(lista);
 
-         //           for (i = 0; i < msg.length; i++) {
-         //           	console.log(msg[i]['customer']);
-         //               //var option = $('<option/>');
-         //               //option.attr('value', msg[i]['customer']).text(msg[i]['customer']);
-         //               //$("#ped_cliente").append(option);
-         //               //$("#resultado4").append(msg[i]['customer']);
-         //           }
-         //          // $('#ped_cliente').selectmenu().selectmenu('refresh',true);
-         //        },
-         //        error: function (response) {
-         //          alert("Error "+response.statusCode);
-         //        }
-         // });
+                   
+                },
+                error: function (response) {
+                  alert("Error "+response.statusCode);
+                }
+         });
    },
 
    Crear_BD: function(tx){
@@ -256,7 +208,8 @@ function submenu(opcion){
 	xhReq.open("GET", "opciones/"+opcionMenu+"/opcion"+opcion+".html", false);
 	xhReq.send(null);
 	document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
-		
+	
+    myScroll = new iScroll('wrapper', { hideScrollbar: true });	
 		// Refrescamos el elemento iscroll segœn el contenido ya a–adido mediante ajax, y hacemos que se desplace al top
 	myScroll.refresh();
 	myScroll.scrollTo(0,0);
@@ -269,7 +222,6 @@ function submenu(opcion){
 	setTimeout(function() {
 		removeClass('li-menu-activo' , document.getElementById("ulMenu").getElementsByTagName("li")[opcion]);
 	}, 300);
-<<<<<<< HEAD
 }
 
 function GetListaPedidos() {
@@ -332,6 +284,23 @@ function SINCRONIZAR_NUEVOUSUARIO(query){
  self.conexion.transaction(function(tx,rs){
     tx.executeSql(query);
  });
-=======
->>>>>>> origin/master
+}
+
+function ConsultarClientes(tx){
+    self.conexion.transaction(function(tx,rs){
+  tx.executeSql('SELECT * from pedido',[],
+          function(tx,rs) {
+             for (var a = 0; a < rs.rows.length; a++) {
+                  var elemento=rs.rows.item(a);
+                  //elemento.Parce_nombre
+                    }
+
+             navigator.notification.alert(elemento.ped_nroPedidoERP);
+             console.log(elemento.ped_nroPedidoERP);
+          },
+          function(tx, err) {
+            navigator.notification.alert('Error insertando, intente nuevamente por favor');
+          }
+        );
+  });
 }

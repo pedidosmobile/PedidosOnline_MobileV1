@@ -6,7 +6,7 @@ cuerpo = document.getElementById("cuerpo"),
 menuprincipal = document.getElementById("menuprincipal"),
 wrapper = document.getElementById("wrapper");
 
-var conexion = window.sqlitePlugin.openDatabase("PedidosMobileDB", "1.0", "Pedidos mobile DB", 200000);
+var conexion = window.openDatabase("PedidosMobileDB", "1.0", "Pedidos mobile DB", 200000);
 
 var xhReq = new XMLHttpRequest();
 var query = '';
@@ -59,7 +59,7 @@ var app = {
     	// Ejecutamos la funci—n FastClick, que es la que nos elimina esos 300ms de espera al hacer click
     	new FastClick(document.body);
     	//this.successCB();
-        db = window.sqlitePlugin.openDatabase("PedidosMobileDB", "1.0", "Pedidos mobile DB", 200000);
+        db = window.openDatabase("PedidosMobileDB", "1.0", "Pedidos mobile DB", 200000);
         db.transaction(app.Crear_BD, app.errorCB, app.successCB, app.insertRecord);
     },
 
@@ -288,7 +288,7 @@ function SINCRONIZAR_NUEVOUSUARIO(query){
 
 function ConsultarClientes(tx){
     self.conexion.transaction(function(tx,rs){
-  tx.executeSql('SELECT * from pedido',[],
+    tx.executeSql('SELECT * from pedido',[],
           function(tx,rs) {
              for (var a = 0; a < rs.rows.length; a++) {
                   var elemento=rs.rows.item(a);

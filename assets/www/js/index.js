@@ -190,7 +190,8 @@ function menu(opcion){
 			estado="menuprincipal";
 		} else if(estado=="menuprincipal"){
 			cuerpo.className = 'page transition center';
-			estado="cuerpo";	
+			estado="cuerpo";
+      myScroll = new iScroll('wrapper', { hideScrollbar: true });	
 		}
 	// Si pulsamos un bot—n del menu principal entramos en el else
 	}

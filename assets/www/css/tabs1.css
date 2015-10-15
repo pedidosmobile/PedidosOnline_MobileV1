@@ -50,7 +50,7 @@ h1 {
 	width: 100%;
 	z-index: 5;
 }
-#content div {
+#content>div {
 	opacity: 0;
 	padding: 1.5em;
 	position: absolute;

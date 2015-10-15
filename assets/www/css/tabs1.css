@@ -15,7 +15,7 @@ h1 {
     display: inline-table; /*!!!!WARNING!!!!!! Para compatibilidad permite que se muestre bien
     					   /* de izquierda a derecha el nav bar de ventas*/ 
 }    
-#container_tabs input {
+#container_tabs>input {
 	height: 50px;
 	visibility: hidden;
 	width: 0px;
@@ -59,7 +59,7 @@ h1 {
 	padding-left: 0px;
     padding-right: 0px;
 }
-#content div input,textarea{
+#content>#content-1>input,textarea{
 	visibility: visible;
     height: 45px;
     padding-left: 8px;

@@ -72,10 +72,9 @@ var app = {
       "Scala",
       "Scheme"
     ];
-    $( "#tags" ).autocomplete({
+    $("#tags").autocomplete({
       source: availableTags
     });
-
 
       this.bindEvents();
       //this.onDeviceReady();

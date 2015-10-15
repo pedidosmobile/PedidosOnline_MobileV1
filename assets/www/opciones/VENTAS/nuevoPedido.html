@@ -1,7 +1,6 @@
-<script type="text/javascript">alert("GO HOME");</script>
-
+<!-- 
 <link rel="stylesheet" type="text/css" href="css/tabs1.css" />
-
+ -->
 <!-- <div class="borde-h1 color2"></div>
 <h1>Captura de Pedidos</h1>	 -->
 
@@ -35,7 +34,19 @@
 		  
 		  <input id="tag_ptoEnvio" type="text" placeholder="Punto de envío">
 
-          <input placeholder="Date" class="textbox-n" type="text" onfocus="(this.type='date')" onfocusout="(this.type='text')"  id="date">
+          <form action="/save-birthda	y" method="POST">
+  			<div class="form-group">
+    			<label class="control-label">Birthday</label>
+    			<div class="input-group">
+
+    	  			<div class="input-group-addon">
+	        			<i class="fa fa-calendar"></i>
+      				</div>
+
+      				<input type="text" class="date-picker form-control" data-date-start-view="decade" data-date-format="mm/dd/yy" data-date="02/01/99" value="02/01/99" name="birthday" placeholder="MM/DD/YY" />
+    			</div>
+  			</div>
+		 </form>
     </div>
 	        <!--Contenido de la Pestaña 2-->
 	        <div id="content-2">

@@ -217,10 +217,11 @@ function submenu(opcion){
 	xhReq.send(null);
 	document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
 	
-  myScroll = new iScroll('wrapper', { hideScrollbar: true });	
+  //*Comentadas para ue el emenu funcione mejor*///
+  //myScroll = new iScroll('wrapper', { hideScrollbar: true });	
 		// Refrescamos el elemento iscroll segœn el contenido ya a–adido mediante ajax, y hacemos que se desplace al top
-	myScroll.refresh();
-	myScroll.scrollTo(0,0);
+	//myScroll.refresh();
+	//myScroll.scrollTo(0,0);
 		
 	// A–adimos las clases necesarias para que la capa cuerpo se mueva al centro de nuestra app y muestre el contenido
 	cuerpo.className = 'page transition center';

@@ -84,6 +84,8 @@ var app = {
       source: availableTags
     });
 
+  showDatePicker($(this), 'date');
+
       this.bindEvents();
       //this.onDeviceReady();
     },

@@ -43,7 +43,7 @@ var app = {
 		
 		// Creamos los 2 scroll mediante el plugin iscroll, uno para el menœ principal y otro para el cuerpo
 		//myScroll = new iScroll('wrapper', { hideScrollbar: true });
-		myScrollMenu = new iScroll('wrapperMenu', { hideScrollbar: true });
+		//myScrollMenu = new iScroll('wrapperMenu', { hideScrollbar: true });
 
         //this.bindEvents();
         this.onDeviceReady();

@@ -72,7 +72,15 @@ var app = {
       "Scala",
       "Scheme"
     ];
-    $("#tags").autocomplete({
+    $("#tag_cliente").autocomplete({
+      source: availableTags
+    });
+
+     $("#tag_sucursal").autocomplete({
+      source: availableTags
+    });
+
+      $("#tag_ptoEnvio").autocomplete({
       source: availableTags
     });
 

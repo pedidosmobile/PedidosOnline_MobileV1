@@ -100,6 +100,7 @@ var app = {
                   alert("Error "+response.statusCode);
                 }
          });
+
    },
 
    Crear_BD: function(tx){
@@ -209,10 +210,10 @@ function submenu(opcion){
 	xhReq.send(null);
 	document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
 	
-    myScroll = new iScroll('wrapper', { hideScrollbar: true });	
+    //myScroll = new iScroll('wrapper', { hideScrollbar: true });	
 		// Refrescamos el elemento iscroll segœn el contenido ya a–adido mediante ajax, y hacemos que se desplace al top
-	myScroll.refresh();
-	myScroll.scrollTo(0,0);
+	//myScroll.refresh();
+	//myScroll.scrollTo(0,0);
 		
 	// A–adimos las clases necesarias para que la capa cuerpo se mueva al centro de nuestra app y muestre el contenido
 	cuerpo.className = 'page transition center';
@@ -222,6 +223,9 @@ function submenu(opcion){
 	setTimeout(function() {
 		removeClass('li-menu-activo' , document.getElementById("ulMenu").getElementsByTagName("li")[opcion]);
 	}, 300);
+
+  var element = document.getElementById("contenidoCuerpo");
+  eval(element.firstChild.innerHTML);
 }
 
 function GetListaPedidos() {
@@ -270,7 +274,7 @@ function GetListaPedidos() {
                              x = 1;
                      }
 
-                     $("#divPedidos").append(lista);
+                     //$("#divPedidos").append(lista);
 
                  },
                  error: function (response) {

@@ -52,25 +52,25 @@ var app = {
       var element = document.getElementById("contenidoCuerpo");
       eval(element.firstChild.innerHTML);
 
-      // app.Transaccion_Bd(function(tx){  
-      //   tx.executeSql('INSERT OR REPLACE INTO SUCURSAL VALUES(null,"suc1",1,"tipo1","dire1","7894565","456328","91100","bogota","cundinam","colombia","lolo","mlo@gmail.com","ee","bloqueo","mora","credio","1","2015-06-06","yo","ok",1)',[],
-      //     function(tx) {
-      //       alert("++++");
-      //     },
-      //     function(tx, err) {
-      //       alert("----");
-      //     });
-      // });
+      app.Transaccion_Bd(function(tx){  
+        tx.executeSql('INSERT OR REPLACE INTO SUCURSAL VALUES(null,"suc1",1,"tipo1","dire1","7894565","456328","91100","bogota","cundinam","colombia","lolo","mlo@gmail.com","ee","bloqueo","mora","credio","1","2015-06-06","yo","ok",1)',[],
+          function(tx) {
+            alert("++++");
+          },
+          function(tx, err) {
+            alert("----");
+          });
+      });
 
-      // app.Transaccion_Bd(function(tx){  
-      //   tx.executeSql('INSERT OR REPLACE INTO tercero VALUES(null,"1033","cc","cliente1","1","1","1","1","2014-06-05","lolo","1",1)',[],
-      //     function(tx) {
-      //       alert("++++");
-      //     },
-      //     function(tx, err) {
-      //       alert("----");
-      //     });
-      // });
+      app.Transaccion_Bd(function(tx){  
+        tx.executeSql('INSERT OR REPLACE INTO tercero VALUES(null,"1033","cc","cliente1","1","1","1","1","2014-06-05","lolo","1",1)',[],
+          function(tx) {
+            alert("++++");
+          },
+          function(tx, err) {
+            alert("----");
+          });
+      });
 
       this.bindEvents();
       //this.onDeviceReady();

@@ -48,41 +48,19 @@ var app = {
 
       //var element = document.getElementById("contenidoCuerpo");
       //eval(element.firstChild.innerHTML);
-  var availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
-    $("#tag_cliente").autocomplete({
-      source: availableTags
-    });
 
-     $("#tag_sucursal").autocomplete({
-      source: availableTags
-    });
+      var element = document.getElementById("contenidoCuerpo");
+      eval(element.firstChild.innerHTML);
 
-      $("#tag_ptoEnvio").autocomplete({
-      source: availableTags
-    });
+      // app.Transaccion_Bd(function(tx){  
+      //   tx.executeSql('INSERT OR REPLACE INTO SUCURSAL VALUES(null,"suc1",1,"tipo1","dire1","7894565","456328","91100","bogota","cundinam","colombia","lolo","mlo@gmail.com","ee","bloqueo","mora","credio","1","2015-06-06","yo")',[],
+      //     function(tx) {
+      //       alert("++++");
+      //     },
+      //     function(tx, err) {
+      //       alert("----");
+      //     });
+      // });
 
       this.bindEvents();
       //this.onDeviceReady();
@@ -167,6 +145,13 @@ var app = {
               }
           });
       tx.executeSql(query);
+    },
+
+    Transaccion_Bd: function(operacion){
+      self.conexion.transaction(operacion, self.errorCB, self.successCB2);
+    },
+
+    successCB2: function() {
     }
  };
 
@@ -239,8 +224,8 @@ function submenu(opcion){
 		removeClass('li-menu-activo' , document.getElementById("ulMenu").getElementsByTagName("li")[opcion]);
 	}, 300);
 
-  //var element = document.getElementById("contenidoCuerpo");
-  //eval(element.firstChild.innerHTML);
+  var element = document.getElementById("contenidoCuerpo");
+  eval(element.firstChild.innerHTML);
 }
 
 function GetListaPedidos() {

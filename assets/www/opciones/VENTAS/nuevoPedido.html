@@ -1,3 +1,31 @@
+<script type="text/javascript">
+    app.Transaccion_Bd(function(tx){
+      tx.executeSql('select * from sucursal',[],
+      function(tx,rs) {
+         if (rs.rows.length > 0) {
+			var availableTags = [];
+            for (var a = 0; a < rs.rows.length; a++) {
+                var elemento=rs.rows.item(a);
+
+                availableTags.push(elemento.suc_nombre);
+            }
+			
+            console.log("HEYY");
+            console.log(availableTags);
+
+			$("#tag_sucursal").autocomplete({
+      		   source: availableTags
+      		});
+
+      		alert("ok");
+         }
+      },
+      function(tx, err) {
+         alert("----");
+      });
+    });
+</script>
+
 <link rel="stylesheet" type="text/css" href="css/tabs1.css" />
 
 <!-- <div class="borde-h1 color2"></div>

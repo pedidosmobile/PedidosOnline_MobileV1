@@ -6,7 +6,7 @@ cuerpo = document.getElementById("cuerpo"),
 menuprincipal = document.getElementById("menuprincipal"),
 wrapper = document.getElementById("wrapper");
 
-var conexion = window.openDatabase("PedidosMobileDB1", "1.0", "Pedidos mobile DB1", 200000);
+var conexion = window.openDatabase("PedidosMobileDB2", "1.0", "Pedidos mobile DB2", 200000);
 
 var xhReq = new XMLHttpRequest();
 var query = '';
@@ -54,6 +54,16 @@ var app = {
 
       // app.Transaccion_Bd(function(tx){  
       //   tx.executeSql('INSERT OR REPLACE INTO SUCURSAL VALUES(null,"suc1",1,"tipo1","dire1","7894565","456328","91100","bogota","cundinam","colombia","lolo","mlo@gmail.com","ee","bloqueo","mora","credio","1","2015-06-06","yo","ok",1)',[],
+      //     function(tx) {
+      //       alert("++++");
+      //     },
+      //     function(tx, err) {
+      //       alert("----");
+      //     });
+      // });
+
+      // app.Transaccion_Bd(function(tx){  
+      //   tx.executeSql('INSERT OR REPLACE INTO tercero VALUES(null,"1033","cc","cliente1","1","1","1","1","2014-06-05","lolo","1",1)',[],
       //     function(tx) {
       //       alert("++++");
       //     },
@@ -120,7 +130,7 @@ var app = {
       tx.executeSql('CREATE TABLE IF NOT EXISTS precio (pre_id integer primary key ASC,item_id int,mae_id int,pre_unidad varchar(45),pre_precio varchar(45),pre_factor varchar(45),pre_fechaCreacion varchar(45),pre_usuarioCreacion varchar (45), pre_estadoSync varchar(10), pre_rowidPortal int)');
       tx.executeSql('CREATE TABLE IF NOT EXISTS punto_envio (pto_id integer PRIMARY KEY asc,pto_nombre varchar(45),pto_estado varchar(45),pto_fechaCreacion varchar(45),pto_usuarioCreacion varchar(45),suc_id int, pto_estadoSync varchar(10), pto_rowidPortal int)');
       tx.executeSql('CREATE TABLE IF NOT EXISTS sucursal (suc_id int,suc_nombre varchar(45),ter_id int, suc_tipo varchar(45),suc_direccion varchar(45),suc_telefono1 varchar(45),suc_telefono2 varchar(45),suc_codigoPostal varchar(45),suc_ciudad varchar(45),suc_depto varchar(45),suc_pais varchar(45),suc_nombreContacto varchar(45),suc_mailCcontacto varchar(45),suc_condicionPago varchar(45),suc_bloqueoCupo varchar(45),suc_bloqueomora varchar(45),suc_cupoCredito varchar(45),suc_estado varchar(45),suc_fechaCreacion varchar(45),suc_usuarioCreacion  varchar(45), suc_estadoSync varchar(10), suc_rowidPortal int)');
-      tx.executeSql('CREATE TABLE IF NOT EXISTS tercero (ter id integer PRIMARY key asc, ter_identificacion varchar(45),ter_tipoIdentificacion  varchar(45),ter_razonSocial  varchar(45),ter_estado varchar(45),ter_esVendedor varchar(45), ter_esCliente varchar(45),ter_esProveedor  varchar(45),ter_fechaCreacion varchar(45),ter_usuario_Creacion varchar(45), ter_estadoSync varchar(10), ter_rowidPortal int)');
+      tx.executeSql('CREATE TABLE IF NOT EXISTS tercero (ter_id integer PRIMARY key asc, ter_identificacion varchar(45),ter_tipoIdentificacion  varchar(45),ter_razonSocial varchar(45),ter_estado varchar(45),ter_esVendedor varchar(45), ter_esCliente varchar(45),ter_esProveedor  varchar(45),ter_fechaCreacion varchar(45),ter_usuario_Creacion varchar(45), ter_estadoSync varchar(10), ter_rowidPortal int)');
       tx.executeSql('CREATE TABLE IF NOT EXISTS usuario (usu_id integer PRIMARY key asc, usu_cedula varchar(45),usu_nombre varchar(45),usu_indActivo varchar(45),usu_username varchar(45),usu_password varchar(45),usu_empresa varchar(45),usu_nitEmpresa varchar(45),usu_fechaCreacion varchar(45),usu_usuarioCreacion  varchar(45), usu_estadoSync varchar(10), usu_rowidPortal int)');
     },
 

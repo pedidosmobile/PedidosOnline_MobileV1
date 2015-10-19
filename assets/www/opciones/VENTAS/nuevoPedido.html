@@ -1,12 +1,14 @@
 <script type="text/javascript">
+    
+	//Consulta de sucursales
     app.Transaccion_Bd(function(tx){
-      tx.executeSql('select suc_nombre from sucursal',[],
-      function(tx,rs) {
-         if (rs.rows.length > 0) {
-			var availableTags = [];
+        tx.executeSql('select suc_id,suc_nombre from sucursal',[],
+         
+        function(tx,rs) {
+           if (rs.rows.length > 0) {
+		   	var availableTags = [];
             for (var a = 0; a < rs.rows.length; a++) {
                  var elemento=rs.rows.item(a);
-                 console.log("+++ "+elemento.suc_nombre);
                  availableTags.push(elemento.suc_nombre);
             }
 
@@ -14,12 +16,35 @@
       		   source: availableTags
       		});
          }
-         alert("OK");
+         alert("EEE1");
       },
       function(tx, err) {
-         alert("----");
+         console.log("Error al cargar sucursales "+err);
       });
     });
+
+    //Consulta de terceros - clientes
+    app.Transaccion_Bd(function(tx){
+        tx.executeSql('select ter_id,ter_razonSocial from tercero',[],
+         
+        function(tx,rs) {
+           if (rs.rows.length > 0) {
+		   	var availableTags = [];
+            for (var a = 0; a < rs.rows.length; a++) {
+                 var elemento=rs.rows.item(a);
+                 availableTags.push(elemento.ter_razonSocial);
+            }
+
+			$("#tag_cliente").autocomplete({
+      		   source: availableTags
+      		});
+         }
+         alert("EEE2");
+      },
+      function(tx, err) {
+         console.log("Error al cargar sucursales "+err);
+      });
+    })
 </script>
 
 <link rel="stylesheet" type="text/css" href="css/tabs1.css" />

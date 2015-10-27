@@ -643,7 +643,7 @@ function GetListaPedidos(tx){
 function DetallePedido(idpedido){
 
   xhReq.open("GET", "opciones/VENTAS/nuevopedido.html", false);
-  xhReq.send(null);
+  //xhReq.send(null);
   document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
   //var cliente = $('#divPedidoDetalle');
 

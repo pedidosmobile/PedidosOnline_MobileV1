@@ -289,18 +289,18 @@ function SincronizarTerceros(){
 
                  for (i = 0; i < dataparse.length; i++) {
                   query = 'INSERT INTO tercero(ter_rowidPortal, ter_identificacion, ter_tipoIdentificacion, ter_razonSocial, ter_estado, ter_esVendedor, ter_esCliente, ter_esProveedor, ter_fechaCreacion, ter_usuario_Creacion) values(';
-                    query += dataparse[i]['rowid'] 
-                          + ', "' + dataparse[i]['identificacion'] + '"'
-                          + ', "' + dataparse[i]['tipo_identificacion'] + '"'
-                          + ', "' + dataparse[i]['razonsocial'] + '"'
-                          + ', "' + dataparse[i]['ind_activo'] + '"'
-                          + ', "' + dataparse[i]['es_vendedor'] + '"'
-                          + ', "' + dataparse[i]['es_cliente'] + '"'
-                          + ', "' + dataparse[i]['es_proveedor'] + '"'
-                          + ', "' + dataparse[i]['fechacreacion'] + '"'
-                          + ', "' + dataparse[i]['usuariocreacion'] + '");'
+                    query += dataparse[i]['RowidTerceroPortal'] 
+                          + ', "' + dataparse[i]['Identificacion'] + '"'
+                          + ', "' + dataparse[i]['Tipo_Identificacion'] + '"'
+                          + ', "' + dataparse[i]['Tercero'] + '"'
+                          + ', "' + dataparse[i]['Estado'] + '"'
+                          + ', "' + dataparse[i]['Vendedor'] + '"'
+                          + ', "' + dataparse[i]['Cliente'] + '"'
+                          + ', "' + dataparse[i]['Proveedor'] + '"'
+                          + ', "' + dataparse[i]['Fecha_Creacion'] + '"'
+                          + ', "' + dataparse[i]['Usuario_Creacion'] + '");'
                     console.log(query);
-                    //saveDetails(query);
+                    saveDetails(query);
                   }
 
                  },

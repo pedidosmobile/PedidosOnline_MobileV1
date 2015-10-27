@@ -273,13 +273,13 @@ function StartPage() {
 //SINCRONIZACION
 function SincronizarTerceros(){
   $.ajax({
-                 //url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/SincronizarTerceros",
-                 url: "http://gabrica.pedidosonline.co/SVC/ObtenerDatos?entidad=TERCEROS",
+                 url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/SincronizarTerceros",
+                 //url: "http://gabrica.pedidosonline.co/SVC/ObtenerDatos?entidad=TERCEROS",
                  type: "GET",
                  cache: false,
                  data: "{}",
                  contentType: "application/json; charset=utf-8",
-                 //dataType: "json",
+                 dataType: "json",
                  processData: true,
                  //crossDomain: true,
                  success: function (data) {
@@ -289,16 +289,16 @@ function SincronizarTerceros(){
 
                  for (i = 0; i < dataparse.length; i++) {
                   query = 'INSERT INTO tercero(ter_rowidPortal, ter_identificacion, ter_tipoIdentificacion, ter_razonSocial, ter_estado, ter_esVendedor, ter_esCliente, ter_esProveedor, ter_fechaCreacion, ter_usuario_Creacion) values(';
-                    query += dataparse[i]['RowidTerceroPortal'] 
-                          + ', "' + dataparse[i]['Identificacion'] + '"'
-                          + ', "' + dataparse[i]['Tipo_Identificacion'] + '"'
-                          + ', "' + dataparse[i]['Tercero'] + '"'
-                          + ', "' + dataparse[i]['Estado'] + '"'
-                          + ', "' + dataparse[i]['Vendedor'] + '"'
-                          + ', "' + dataparse[i]['Cliente'] + '"'
-                          + ', "' + dataparse[i]['Proveedor'] + '"'
-                          + ', "' + dataparse[i]['Fecha_Creacion'] + '"'
-                          + ', "' + dataparse[i]['Usuario_Creacion'] + '");'
+                    query += dataparse[i]['ter_rowidPortal'] 
+                          + ', "' + dataparse[i]['ter_identificacion'] + '"'
+                          + ', "' + dataparse[i]['ter_tipoIdentificacion'] + '"'
+                          + ', "' + dataparse[i]['ter_razonSocial'] + '"'
+                          + ', "' + dataparse[i]['ter_estado'] + '"'
+                          + ', "' + dataparse[i]['ter_esVendedor'] + '"'
+                          + ', "' + dataparse[i]['ter_esCliente'] + '"'
+                          + ', "' + dataparse[i]['ter_esProveedor'] + '"'
+                          + ', "' + dataparse[i]['ter_fechaCreacion'] + '"'
+                          + ', "' + dataparse[i]['ter_usuario_Creacion'] + '");'
                     console.log(query);
                     saveDetails(query);
                   }

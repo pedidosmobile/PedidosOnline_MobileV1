@@ -299,7 +299,7 @@ function SincronizarTerceros(){
                           + ', "' + dataparse[i]['ter_esProveedor'] + '"'
                           + ', "' + dataparse[i]['ter_fechaCreacion'] + '"'
                           + ', "' + dataparse[i]['ter_usuario_Creacion'] + '");'
-                    console.log(query);
+                    //console.log(query);
                     saveDetails(query);
                   }
 

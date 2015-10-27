@@ -307,7 +307,7 @@ function ConsultarClientes(tx){
              console.log(elemento.ped_nroPedidoERP);
           },
           function(tx, err) {
-            alert('Error insertando, intente nuevamente por favor');
+            alert('Error insertando, intente nuevamente por favor' + err);
           }
         );
     });

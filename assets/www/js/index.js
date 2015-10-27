@@ -6,7 +6,7 @@ cuerpo = document.getElementById("cuerpo"),
 menuprincipal = document.getElementById("menuprincipal"),
 wrapper = document.getElementById("wrapper");
 
-var conexion = window.openDatabase("PedidosMobileDB", "1.0", "Pedidos mobile DB", 200000);
+var conexion = window.openDatabase("PedidosMobileDB3", "1.0", "Pedidos mobile DB3", 200000);
 
 var xhReq = new XMLHttpRequest();
 var query = '';
@@ -15,16 +15,9 @@ var app = {
 
     // Constructor de la app
     initialize: function() {
-    	// Estado inicial mostrando capa cuerpo
+     	// Estado inicial mostrando capa cuerpo
     	estado="cuerpo";
     	
-      $("#TituloModulo").append(
-        $('<p/>').append(
-          $('<span/>').text('Pedidos'),
-          $('<b/>').text('Online')
-        ).addClass('logo')
-      )
-
     	// Creamos el elemento style, lo a–adimos al html y creamos la clase cssClass para aplicarsela al contenedor wrapper
 	    var heightCuerpo=window.innerHeight-46;
 	    var style = document.createElement('style');
@@ -33,87 +26,155 @@ var app = {
 	    document.getElementsByTagName('head')[0].appendChild(style);
 	    
 	    // A–adimos las clases necesarias
+		  cuerpo.className = 'page center';
+		  menuprincipal.className = 'page center';
+		  wrapper.className = 'cssClass';
+			
+		  // Leemos por ajax el archivos opcion1.html de la carpeta opciones
+		  //xhReq.open("GET", "opciones/"+opcionMenu+"/opcion1.html", false);
+      xhReq.open("GET", "opciones/VENTAS/nuevoPedido.html", false);
+      xhReq.send(null);
+		  document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
+
+		  // Leemos por ajax el archivos menu.html de la carpeta opciones
+		  // xhReq.open("GET", "opciones/opcion"+opcionMenu+".html", false);
+		  xhReq.open("GET", "opciones/opcionCRM.html", false);
+		  xhReq.send(null);
+		  document.getElementById("ulMenu").innerHTML = xhReq.responseText;
 		
-      cuerpo.className = 'page center';
-  		menuprincipal.className = 'page center';
-  		wrapper.className = 'cssClass';
-  			
-  		// Leemos por ajax el archivos opcion1.html de la carpeta opciones
-  		xhReq.open("GET", "opciones/"+opcionMenu+"/opcion1.html", false);
-  		xhReq.send(null);
-  		document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
+		  // Creamos los 2 scroll mediante el plugin iscroll, uno para el menœ principal y otro para el cuerpo
+		  //myScroll = new iScroll('wrapper', { hideScrollbar: true });
+		  myScrollMenu = new iScroll('wrapperMenu', { hideScrollbar: true });
 
-  		// Leemos por ajax el archivos menu.html de la carpeta opciones
-  		// xhReq.open("GET", "opciones/opcion"+opcionMenu+".html", false);
-  		xhReq.open("GET", "opciones/opcionCRM.html", false);
-  		xhReq.send(null);
-  		document.getElementById("ulMenu").innerHTML = xhReq.responseText;
-  		
-  		// Creamos los 2 scroll mediante el plugin iscroll, uno para el menœ principal y otro para el cuerpo
-  		//myScroll = new iScroll('wrapper', { hideScrollbar: true });
-  		//myScrollMenu = new iScroll('wrapperMenu', { hideScrollbar: true });
+      //var element = document.getElementById("contenidoCuerpo");
+      //eval(element.firstChild.innerHTML);
 
-        //this.bindEvents();
-        this.onDeviceReady();
-      },
+      var element = document.getElementById("contenidoCuerpo");
+      eval(element.firstChild.innerHTML);
+      
+      // app.Transaccion_Bd(function(tx){  
+      //   tx.executeSql('INSERT OR REPLACE INTO tercero VALUES(null,"1033","cc","homecenter","1","1","1","1","2014-06-05","lolo","1",1)',[],
+      //     function(tx) {
+      //       alert("++++");
+      //     },
+      //     function(tx, err) {
+      //       alert("----");
+      //     });
+      // });
+
+      // app.Transaccion_Bd(function(tx){  
+      //   tx.executeSql('INSERT OR REPLACE INTO SUCURSAL VALUES(null,"suc1",1,"tipo1","dire1","7894565","456328","91100","bogota","cundinam","colombia","lolo","mlo@gmail.com","ee","bloqueo","mora","credio","1","2015-06-06","yo","ok",1)',[],
+      //     function(tx) {
+      //       alert("++++");
+      //     },
+      //     function(tx, err) {
+      //       alert("----");
+      //     });
+      // });
+
+      // app.Transaccion_Bd(function(tx){  
+      //   tx.executeSql('INSERT OR REPLACE INTO punto_envio VALUES(null,"boyaca","ok","2015-06-03","usua7",2,"ok",1)',[],
+      //     function(tx) {
+      //       alert("++++");
+      //     },
+      //     function(tx, err) {
+      //       alert("----");
+      //     });
+      // });
+
+      this.bindEvents();
+      //this.onDeviceReady();
+    },
 
     bindEvents: function() {
-      //document.addEventListener('deviceready', this.onDeviceReady, false);
-      },
+       document.addEventListener('deviceready', this.onDeviceReady, false);
+    },
 
     onDeviceReady: function() {
     	// Ejecutamos la funci—n FastClick, que es la que nos elimina esos 300ms de espera al hacer click
     	new FastClick(document.body);
     	//this.successCB();
-        db = window.openDatabase("PedidosMobileDB", "1.0", "Pedidos mobile DB", 200000);
-        db.transaction(app.Crear_BD, app.errorCB, app.successCB);
-      },
+      self.conexion.transaction(app.Crear_BD, app.errorCB, app.successCB, app.insertRecord);
+    },
 
     errorCB : function(err) {
-      alert("Error en la operación "+err, {},"Operación fallo");
-      },
+        alert("Error en la operación "+err, {},"Operación fallo");
+        console.log(err);
+    },
 
     successCB: function() {
-      StartPage();
-      },
+      alert("Base de datos creada", {},"Operación ok");
+      $.ajax({
+              url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList",
+              type: "GET",
+              data: "{}",
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              success: function (data) {
+                 var msg = JSON.parse(data);
+                 var lista = $('<ul/>');
+
+                 for(var i in msg) {
+                      lista.append(
+                        $('<li/>').append(
+                            $('<div/>').addClass('list_client').append(
+                            $('<div/>').addClass('borde-menu color1')).append(
+                            $('<p/>').text(msg[i]['customer']))
+                          )
+                        )
+                 }
+                  $("#divClientes").append(lista);                  
+                },
+              error: function (response) {
+                  alert("Error "+response.statusCode);
+              }
+         });
+    },
 
     Crear_BD: function(tx){
-       tx.executeSql('CREATE TABLE IF NOT EXISTS descuento(des_id INTEGER PRIMARY KEY ASC, ter_id int, item_id int,des_valorDescuento varchar(45),des_porcentaje varchar(45),des_estado varchar(45),des_fechaCreacion vachar(45),des_usuarioCreacion varchar(45), des_estadoSync varchar(10))');
-       tx.executeSql('CREATE TABLE IF NOT EXISTS item (item_id integer primary key asc,item_referencia varchar(45),item_codigo varchar(45),item_descripcion varchar(45),item_cantidadBase varchar(45),item_stock varchar(45),item_estado varchar(45),item_fechaCreacion varchar(45),item_usuarioCreacion varchar(45), item_estadoSync varchar(10))');   
-       tx.executeSql('CREATE TABLE IF NOT EXISTS maestro (mae_id integer primary key asc,mae_tipo varchar(45),mae_descripcion varchar(45),mae_moneda varchar(45),mae_fechaCreacion varchar(45),mae_usuarioCreacion varchar(45),mae_estado varchar(45),usu_id int,suc_id int), mae_estadoSync varchar(10)');
-       tx.executeSql('CREATE TABLE IF NOT EXISTS pedido (ped_id integer primary key asc,ter_id int,mae_id int,pto_id int,ped_fechapedido varchar(45),ped_fechaEntrega varchar(45),ped_observaciones varchar(45),ped_observaciones2 varchar(45),ped_ordenCompra varchar(45),ped_referencia varchar(45),ped_valorNeto varchar(45),ped_descuento varchar(45),ped_impuesto varchar(45),ped_valorTotal varchar(45),ped_valorFacturado varchar(45),ped_estado varchar(45),ped_nroPedidoERP varchar(45),ped_nroFacturaERP varchar(45),ped_estadoERP varchar(45),ped_medioDePago varchar(45),ped_estadoDePago varchar(45),ped_saldo varchar(45), ped_estadoSync varchar(10))');
-       tx.executeSql('CREATE TABLE IF NOT EXISTS pedido_detalle (pdet_id integer primary key ASC,ped_id int,mae_id int,item_id int,pdet_descripcion varchar(45),pdet_cantidad varchar(45),pdet_valorImpuesto varchar(45),pdet_porcentajeDescuento  varchar(45),pdet_descuento varchar(45),pdet_valorNeto varchar(45),pdet_fechaCreacion varchar(45),pdet_usuarioCreacion varchar(45), pdet_estadoSync varchar(10))');
-       tx.executeSql('CREATE TABLE IF NOT EXISTS precio (pre_id integer primary key ASC,item_id int,mae_id int,pre_unidad varchar(45),pre_precio varchar(45),pre_factor varchar(45),pre_fechaCreacion varchar(45),pre_usuarioCreacion varchar (45), pre_estadoSync varchar(10))');
-       tx.executeSql('CREATE TABLE IF NOT EXISTS punto_envio (pto_id integer PRIMARY KEY asc,pto_nombre varchar(45),pto_estado varchar(45),pto_fechaCreacion varchar(45),pto_usuarioCreacion varchar(45),suc_id int, pto_estadoSync varchar(10))');
-       tx.executeSql('CREATE TABLE IF NOT EXISTS sucursal (suc_id int,suc_nombre varchar(45),ter_id int, suc_tipo varchar(45),suc_direccion varchar(45),suc_telefono1 varchar(45),suc_telefono2 varchar(45),suc_codigoPostal varchar(45),suc_ciudad varchar(45),suc_depto varchar(45),suc_pais varchar(45),suc_nombreContacto varchar(45),suc_mailCcontacto varchar(45),suc_condicionPago varchar(45),suc_bloqueoCupo varchar(45),suc_bloqueomora varchar(45),suc_cupoCredito varchar(45),suc_estado varchar(45),suc_fechaCreacion varchar(45),suc_usuarioCreacion  varchar(45), suc_estadoSync varchar(10))');
-       tx.executeSql('CREATE TABLE IF NOT EXISTS tercero (ter id integer PRIMARY key asc, ter_identificacion varchar(45),ter_tipoIdentificacion  varchar(45),ter_razonSocial  varchar(45),ter_estado varchar(45),ter_esVendedor varchar(45), ter_esCliente varchar(45),ter_esProveedor  varchar(45),ter_fechaCreacion varchar(45),ter_usuario_Creacion varchar(45), ter_estadoSync varchar(10))');
-       tx.executeSql('CREATE TABLE IF NOT EXISTS usuario (usu_id integer PRIMARY key asc, usu_cedula varchar(45),usu_nombre varchar(45),usu_indActivo varchar(45),usu_username varchar(45),usu_password varchar(45),usu_empresa varchar(45),usu_nitEmpresa varchar(45),usu_fechaCreacion varchar(45),usu_usuarioCreacion  varchar(45), usu_estadoSync varchar(10))');
-       db.transaction(app.synchronization);
-        },
+      tx.executeSql('CREATE TABLE IF NOT EXISTS descuento(des_id INTEGER PRIMARY KEY ASC, ter_id int, item_id int,des_valorDescuento varchar(45),des_porcentaje varchar(45),des_estado varchar(45),des_fechaCreacion vachar(45),des_usuarioCreacion varchar(45), des_estadoSync varchar(10), des_rowidPortal int)');
+      tx.executeSql('CREATE TABLE IF NOT EXISTS item (item_id integer primary key asc,item_referencia varchar(45),item_codigo varchar(45),item_descripcion varchar(45),item_cantidadBase varchar(45),item_stock varchar(45),item_estado varchar(45),item_fechaCreacion varchar(45),item_usuarioCreacion varchar(45), item_estadoSync varchar(10), item_rowidPortal int)');   
+      tx.executeSql('CREATE TABLE IF NOT EXISTS maestro (mae_id integer primary key asc,mae_tipo varchar(45),mae_descripcion varchar(45),mae_moneda varchar(45),mae_fechaCreacion varchar(45),mae_usuarioCreacion varchar(45),mae_estado varchar(45),usu_id int,suc_id int, mae_estadoSync varchar(10), mae_rowidPortal int)');
+      tx.executeSql('CREATE TABLE IF NOT EXISTS pedido (ped_id integer primary key asc,ter_id int,mae_id int,pto_id int,ped_fechapedido varchar(45),ped_fechaEntrega varchar(45),ped_observaciones varchar(45),ped_observaciones2 varchar(45),ped_ordenCompra varchar(45),ped_referencia varchar(45),ped_valorNeto varchar(45),ped_descuento varchar(45),ped_impuesto varchar(45),ped_valorTotal varchar(45),ped_valorFacturado varchar(45),ped_estado varchar(45),ped_nroPedidoERP varchar(45),ped_nroFacturaERP varchar(45),ped_estadoERP varchar(45),ped_medioDePago varchar(45),ped_estadoDePago varchar(45),ped_saldo varchar(45), ped_estadoSync varchar(10), ped_rowidPortal int)');
+      tx.executeSql('CREATE TABLE IF NOT EXISTS pedido_detalle (pdet_id integer primary key ASC,ped_id int,mae_id int,item_id int,pdet_descripcion varchar(45),pdet_cantidad varchar(45),pdet_valorImpuesto varchar(45),pdet_porcentajeDescuento  varchar(45),pdet_descuento varchar(45),pdet_valorNeto varchar(45),pdet_fechaCreacion varchar(45),pdet_usuarioCreacion varchar(45), pdet_estadoSync varchar(10), pdet_rowidPortal int)');
+      tx.executeSql('CREATE TABLE IF NOT EXISTS precio (pre_id integer primary key ASC,item_id int,mae_id int,pre_unidad varchar(45),pre_precio varchar(45),pre_factor varchar(45),pre_fechaCreacion varchar(45),pre_usuarioCreacion varchar (45), pre_estadoSync varchar(10), pre_rowidPortal int)');
+      tx.executeSql('CREATE TABLE IF NOT EXISTS punto_envio (pto_id integer PRIMARY KEY asc,pto_nombre varchar(45),pto_estado varchar(45),pto_fechaCreacion varchar(45),pto_usuarioCreacion varchar(45),suc_id int, pto_estadoSync varchar(10), pto_rowidPortal int)');
+      tx.executeSql('CREATE TABLE IF NOT EXISTS sucursal (suc_id integer PRIMARY KEY asc,suc_nombre varchar(45),ter_id int, suc_tipo varchar(45),suc_direccion varchar(45),suc_telefono1 varchar(45),suc_telefono2 varchar(45),suc_codigoPostal varchar(45),suc_ciudad varchar(45),suc_depto varchar(45),suc_pais varchar(45),suc_nombreContacto varchar(45),suc_mailCcontacto varchar(45),suc_condicionPago varchar(45),suc_bloqueoCupo varchar(45),suc_bloqueomora varchar(45),suc_cupoCredito varchar(45),suc_estado varchar(45),suc_fechaCreacion varchar(45),suc_usuarioCreacion  varchar(45), suc_estadoSync varchar(10), suc_rowidPortal int)');
+      tx.executeSql('CREATE TABLE IF NOT EXISTS tercero (ter_id integer PRIMARY key asc, ter_identificacion varchar(45),ter_tipoIdentificacion  varchar(45),ter_razonSocial varchar(45),ter_estado varchar(45),ter_esVendedor varchar(45), ter_esCliente varchar(45),ter_esProveedor  varchar(45),ter_fechaCreacion varchar(45),ter_usuario_Creacion varchar(45), ter_estadoSync varchar(10), ter_rowidPortal int)');
+      tx.executeSql('CREATE TABLE IF NOT EXISTS usuario (usu_id integer PRIMARY key asc, usu_cedula varchar(45),usu_nombre varchar(45),usu_indActivo varchar(45),usu_username varchar(45),usu_password varchar(45),usu_empresa varchar(45),usu_nitEmpresa varchar(45),usu_fechaCreacion varchar(45),usu_usuarioCreacion  varchar(45), usu_estadoSync varchar(10), usu_rowidPortal int)');
+    },
 
-    synchronization: function(tx){
-        $.ajax({
-                 url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetListaPedidos",
-                 type: "GET",
-                 cache: false,
-                 data: "{}",
-                 contentType: "application/json; charset=utf-8",
-                 dataType: "json",
-                 processData: true,
-                 success: function (data) {
+    insertRecord: function(tx){
+      $.ajax({
+              url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetListaPedidos",
+              type: "GET",
+              cache: false,
+              data: "{}",
+              contentType: "application/json; charset=utf-8",
+              dataType: "json",
+              processData: true,
+              success: function (data) {
 
-                 var dataparse = JSON.parse(data);
+                var dataparse = JSON.parse(data);
 
-                 query = 'INSERT INTO pedido(ped_nroPedidoERP, ped_fechapedido, ped_observaciones, ped_valorTotal) values("1234", "' + dataparse[0]['Fecha_Pedido'] + '", "' + dataparse[0]['Sucursal'] + '", "' + dataparse[0]['Valor'] + '")'  
-                 saveDetails(query);
-                 },
-                 error: function (response) {
-                     console.log("Error");
-                     console.log(response.statusCode);
-                 }
-             });
-        }
-};
+                query = 'INSERT INTO pedido(ped_nroPedidoERP, ped_fechapedido, ped_observaciones, ped_valorTotal) values("123", "' + dataparse[0]['Fecha_Pedido'] + '", "' + dataparse[0]['Sucursal'] + '", "' + dataparse[0]['Valor'] + '")'
+                SINCRONIZAR_NUEVOUSUARIO(query);
+              },
+              error: function (response) {
+                console.log("Error");
+                console.log(response.statusCode);
+              }
+          });
+      tx.executeSql(query);
+    },
+
+    Transaccion_Bd: function(operacion){
+      self.conexion.transaction(operacion, self.errorCB, self.successCB2);
+    },
+
+    successCB2: function() {
+    }
+ };
 
 // Funci—n para a–adir clases css a elementos
 function addClass( classname, element ) {
@@ -143,7 +204,7 @@ function menu(opcion){
 			estado="menuprincipal";
 		} else if(estado=="menuprincipal"){
 			cuerpo.className = 'page transition center';
-			estado="cuerpo";
+			estado="cuerpo";	
 		}
 	// Si pulsamos un bot—n del menu principal entramos en el else
 	}
@@ -157,16 +218,6 @@ function menu(opcion){
        var lista = document.getElementById("ulMenu");
        lista.innerHTML = xhReq.responseText;
        opcionMenu = opcion;
-
-	   ////var selectBox = document.getElementById('ulMenu');
-       ////var items = selectBox.getElementsByTagName('LI');
-       // var items = document.querySelectorAll('#ulMenu li:nth-child(n+2)');
-       
-       //selectBox.innerHTML = xhReq.responseText;
-       	
-       //for(i=0; i<items.length; i++) {
-		// console.log("---- "+items[i].innerHTML);
-       //}
     }
 }
 
@@ -179,7 +230,8 @@ function submenu(opcion){
 	xhReq.send(null);
 	document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
 	
-    //myScroll = new iScroll('wrapper', { hideScrollbar: true });	
+  //*Comentadas para ue el emenu funcione mejor*///
+  //myScroll = new iScroll('wrapper', { hideScrollbar: true });	
 		// Refrescamos el elemento iscroll segœn el contenido ya a–adido mediante ajax, y hacemos que se desplace al top
 	//myScroll.refresh();
 	//myScroll.scrollTo(0,0);
@@ -193,108 +245,68 @@ function submenu(opcion){
 		removeClass('li-menu-activo' , document.getElementById("ulMenu").getElementsByTagName("li")[opcion]);
 	}, 300);
 
-  //limpio el encabezado anterior
-  $("#TituloModulo").empty();
-  //Agrego el nuevo encabexado
-  $("#TituloModulo").append(
-        $('<p/>').append(
-          $('<span/>').text(opcionMenu)
-        ).addClass('logo')
-      )
-
   var element = document.getElementById("contenidoCuerpo");
   eval(element.firstChild.innerHTML);
 }
 
-function StartPage() {
-    //alert("Base de datos creada", {},"Operación ok");
-              $.ajax({
-                 url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetCustomerList",
-                 type: "GET",
-                 data: "{}",
-                 contentType: "application/json; charset=utf-8",
-                 dataType: "json",
-                 success: function (data) {
-          
-                   var dataparse = JSON.parse(data);
- 
-                   var lista = $('#divClientes');
-
-                     //for (var i in dataparse) {
-                     for (i = 0; i < dataparse.length; i++) {
-                         lista.append(
-                              $('<a/>').addClass('button color1').append(
-                                 $('<span/>').text('Cliente: ' + dataparse[i]['customer']).addClass('meta expiry'),
-                                 $('<i/>').addClass('chevron')
-                             )
-                             )
-                     }
-                },
-                error: function (response) {
-                  alert("Error "+response.statusCode);
-                }
-         });
-}
-
 function GetListaPedidos() {
-             $.ajax({
-                 url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetListaPedidos",
-                 type: "GET",
-                 cache: false,
-                 data: "{}",
-                 contentType: "application/json; charset=utf-8",
-                 dataType: "json",
-                 processData: true,
-                 success: function (data) {
+    $.ajax({
+            url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/GetListaPedidos",
+            type: "GET",
+            cache: false,
+            data: "{}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            processData: true,
+            success: function (data) {
 
-                     var dataparse = JSON.parse(data);
+            var dataparse = JSON.parse(data);
+            var x = 1;
+            var lista = $('#divPedidos');
+            var status;
 
-                     //console.log(dataparse);
-
-                     var x = 1;
-
-                     var lista = $('#divPedidos');
-
-                     var status;
-                     //for (var i in dataparse) {
-                     for (i = 0; i < dataparse.length; i++) {
+            for (i = 0; i < dataparse.length; i++) {
                      	
-                     	if(i%2 == 0)	
-                        	status = $('<i/>').addClass('great')
-                        else
-                        	status = $('<i/>').addClass('warning')
+                if(i%2 == 0)	
+                   status = $('<i/>').addClass('great')
+                else
+                   status = $('<i/>').addClass('warning')
 
-                         lista.append(
-                              $('<a/>').addClass('button color' + x).append(
-                                 $('<span/>').text('Nro. PEDIDO: ' + dataparse[i]['Nro_Pedido']).addClass('meta expiry'),
-                                 status,
-                                 $('<span/>').text('FECHA: ' + dataparse[i]['Fecha_Pedido']).addClass('meta date'),
-                                 $('<span/>').text(dataparse[i]['Empresa']).addClass('item'),
-                                 $('<span/>').text('SUCURSAL: ' + dataparse[i]['Sucursal']).addClass('meta expiry'),
-                                 $('<span/>').text('$' + dataparse[i]['Valor']).addClass('meta cost'),
-                                 $('<i/>').addClass('chevron')
-                             )//.attr("href", "http://www.google.com/")
-                             )
+                lista.append(
+                      $('<a/>').addClass('button color' + x).append(
+                      $('<span/>').text('Nro. PEDIDO: ' + dataparse[i]['Nro_Pedido']).addClass('meta expiry'),
+                      status,
+                      $('<span/>').text('FECHA: ' + dataparse[i]['Fecha_Pedido']).addClass('meta date'),
+                      $('<span/>').text(dataparse[i]['Empresa']).addClass('item'),
+                      $('<span/>').text('SUCURSAL: ' + dataparse[i]['Sucursal']).addClass('meta expiry'),
+                      $('<span/>').text('$' + dataparse[i]['Valor']).addClass('meta cost'),
+                      $('<i/>').addClass('chevron')
+                      )//.attr("href", "http://www.google.com/")
+                )
                          
-                         x = x + 1;
-                         if (x == 5)
-                             x = 1;
-                     }
-                 },
-                 error: function (response) {
-                     console.log("Error");
-                     console.log(response.statusCode);
-                 }
-             });
-         }
+                x = x + 1;
+                if (x == 5)
+                    x = 1;
+             }
 
-function saveDetails(query){
- self.conexion.transaction(function(tx,rs){
+              $("#divPedidos").append(lista);
+          },
+          error: function (response) {
+              console.log("Error");
+              console.log(response.statusCode);
+          }
+        });
+      }
+
+
+function SINCRONIZAR_NUEVOUSUARIO(query){
+  self.conexion.transaction(function(tx,rs){
     tx.executeSql(query);
- });
+  });
 }
 
 function ConsultarClientes(tx){
+<<<<<<< HEAD
     self.conexion.transaction(function(tx,rs){
     tx.executeSql('SELECT * from pedido',[],
           function(tx,rs) {
@@ -310,5 +322,20 @@ function ConsultarClientes(tx){
             alert('Error insertando, intente nuevamente por favor' + err);
           }
         );
+=======
+  self.conexion.transaction(function(tx,rs){
+  tx.executeSql('SELECT * from pedido',[],
+    function(tx,rs) {
+        for (var a = 0; a < rs.rows.length; a++) {
+             var elemento=rs.rows.item(a);
+            }
+
+        navigator.notification.alert(elemento.ped_nroPedidoERP);
+        console.log(elemento.ped_nroPedidoERP);
+    },
+    function(tx, err) {
+        alert('Error insertando, intente nuevamente por favor');
+>>>>>>> origin/master
     });
-  }
+  });
+}

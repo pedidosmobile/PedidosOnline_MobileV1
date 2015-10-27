@@ -59,7 +59,7 @@ h1 {
 	padding-left: 0px;
     padding-right: 0px;
 }
-#content>#content-1>input,textarea{
+#content>div>form>input,textarea{
 	visibility: visible;
     height: 45px;
     padding-left: 8px;

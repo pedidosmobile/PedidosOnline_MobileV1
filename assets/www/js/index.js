@@ -603,7 +603,7 @@ function GetListaPedidos(tx){
                               'join tercero ter ' +
                                 'on ped.ter_id = ter.ter_rowidPortal ' +
                               'join sucursal suc ' +
-                                'on ter.ter_rowidPortal = suc.ter_id',[],
+                                'on ter.ter_rowidPortal = suc.ter_id limit 10',[],
           function(tx,rs) {
              for (var a = 0; a < rs.rows.length; a++) {
 
@@ -679,7 +679,7 @@ function CustomerList(tx){
   //alert('desde bd local');
     var lista = $('#divClientes');
     self.conexion.transaction(function(tx,rs){
-    tx.executeSql('SELECT ter_razonSocial from tercero limit 1000',[],
+    tx.executeSql('SELECT ter_razonSocial from tercero limit 10',[],
           function(tx,rs) {
              for (var a = 0; a < rs.rows.length; a++) {
 

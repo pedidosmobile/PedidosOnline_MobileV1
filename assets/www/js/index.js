@@ -645,11 +645,9 @@ function DetallePedido(idpedido){
   xhReq.open("GET", "opciones/VENTAS/nuevopedido.html", false);
   xhReq.send(null);
   document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
-  var cliente = $('#divPedidoDetalle');
+  //var cliente = $('#divPedidoDetalle');
 
-
-
-    self.conexion.transaction(function(tx,rs){
+    /*self.conexion.transaction(function(tx,rs){
     tx.executeSql('SELECT ped.ped_id, ped.ped_nroPedidoERP, ped.ped_fechapedido,' +
                           'ped.ped_valorTotal,ter.ter_razonSocial, suc.suc_nombre ' +
                             'from pedido ped ' +
@@ -671,7 +669,7 @@ function DetallePedido(idpedido){
             alert('Error ' + err);
           }
         );
-    });
+    });*/
 
     var element = document.getElementById("contenidoCuerpo");
     eval(element.firstChild.innerHTML);

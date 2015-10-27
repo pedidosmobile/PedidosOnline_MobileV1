@@ -1,66 +1,65 @@
-
 body{
- background: #FFFFFF;
- font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+background: #FFFFFF;
+font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
 }
 #contenidoCuerpo{
    margin: 0px;
 }
 h1 {
-	margin: 1em 0;
-	text-align: center;
+                margin: 1em 0;
+                text-align: center;
 }
 #container_tabs {
     width: 100%;
     display: inline-table; /*!!!!WARNING!!!!!! Para compatibilidad permite que se muestre bien
-    					   /* de izquierda a derecha el nav bar de ventas*/ 
+                                                                                 /* de izquierda a derecha el nav bar de ventas*/ 
 }    
 #container_tabs>input {
-	height: 50px;
-	visibility: hidden;
-	width: 0px;
-	margin: 0px;
-	padding: 0px;
+                height: 50px;
+                visibility: hidden;
+                width: 0px;
+                margin: 0px;
+                padding: 0px;
 }
 #container_tabs label {
-	background: #f9f9f9;  /* Fondo de las pestañas */
-	color: #888;  /* Color del texto de las pestañas */
-	display: block;
-	float: left;
-	font-size: 1em;  /* Tamaño del texto de las pestañas */
-	height: 50px;
+                background: #f9f9f9;  /* Fondo de las pestañas */
+                color: #888;  /* Color del texto de las pestañas */
+                display: block;
+                float: left;
+                font-size: 1em;  /* Tamaño del texto de las pestañas */
+                height: 50px;
     line-height: 3.6em;
-	width: 33.3%;
-	text-align: center;
+                width: 33.3%;
+                text-align: center;
 }
 /*Tambien es posible utilizar input:hover + label*/
 #container_tabs input:checked + label{
     color: #000;
 }
 #container_tabs input:checked + label>div {
-	width: 100%;
+                width: 100%;
     height: 3px;
     background-color: #03A9F4;
 }
 #content {
-	background: #FFFFFF;  /* Fondo del contenido */
-	border-radius: 0 .25em .25em .25em;
-	min-height: 20em;  /* Alto del contenido */
-	position: relative;
-	width: 100%;
-	z-index: 5;
+                background: #FFFFFF;  /* Fondo del contenido */
+                border-radius: 0 .25em .25em .25em;
+                min-height: 20em;  /* Alto del contenido */
+                position: relative;
+                width: 100%;
+                z-index: 5;
 }
 #content>div {
-	opacity: 0;
-	padding: 1.5em;
-	position: absolute;
-	z-index: -100;
-	width: 100%;
-	padding-left: 0px;
+                opacity: 0;
+                padding: 1.5em;
+                position: absolute;
+                z-index: -100;
+                width: 100%;
+                padding-left: 0px;
     padding-right: 0px;
 }
 #content>div>form>input,textarea{
-	visibility: visible;
+                visibility: visible;
     height: 45px;
     padding-left: 8px;
     border: 1px;
@@ -73,15 +72,15 @@ h1 {
     margin-top: 15px;
 }
 #content-1 p {
-	clear: both;
-	margin-bottom: 1em;
+                clear: both;
+                margin-bottom: 1em;
 }
 #content-1 p.left img {
-	float: left;
-	margin-right: 1em;
+                float: left;
+                margin-right: 1em;
 }
 #content-1 p.last {
-	margin-bottom: 0;
+                margin-bottom: 0;
 }
 #content-1 span:first-child{
     margin-left: 5%;
@@ -94,22 +93,22 @@ h1 {
     margin-bottom: 20px;
 }
 #content-2 p {
-	float: left;
-	width: 48.5%;
+                float: left;
+                width: 48.5%;
 }
 #content-2 p.column-right {
-	margin-left: 3%;
+                margin-left: 3%;
 }
 #content-2 p img {
-	display: block;
-	margin: 0 auto 1em auto;
+                display: block;
+                margin: 0 auto 1em auto;
 }
 #content-3 p,
 #content-3 ul {
-	margin-bottom: 1em;
+                margin-bottom: 1em;
 }
 #content-3 ul {
-	margin-left: 2em;
+                margin-left: 2em;
 }
 #container_tabs input#tab-1:checked ~ #content #content-1,
 #container_tabs input#tab-2:checked ~ #content #content-2,

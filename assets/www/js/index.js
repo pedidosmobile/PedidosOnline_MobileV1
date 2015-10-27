@@ -286,7 +286,7 @@ function SincronizarTerceros(){
                   //debugger;
 
                  var dataparse = JSON.parse(data);
-
+                alert('entro a armar query');
                  for (i = 0; i < dataparse.length; i++) {
                   query = 'INSERT INTO tercero(ter_rowidPortal, ter_identificacion, ter_tipoIdentificacion, ter_razonSocial, ter_estado, ter_esVendedor, ter_esCliente, ter_esProveedor, ter_fechaCreacion, ter_usuario_Creacion) values(';
                     query += dataparse[i]['ter_rowidPortal'] 
@@ -588,6 +588,7 @@ function saveDetails(query){
  self.conexion.transaction(function(tx,rs){
     tx.executeSql(query);
     query = '';
+    
     console.log('****************************************INSERTADO********************************************');
  });
   }
@@ -678,7 +679,7 @@ function DetallePedido(idpedido){
     }
 
 function CustomerList(tx){
-  alert('desde bd local');
+  //alert('desde bd local');
     var lista = $('#divClientes');
     self.conexion.transaction(function(tx,rs){
     tx.executeSql('SELECT ter_razonSocial from tercero',[],

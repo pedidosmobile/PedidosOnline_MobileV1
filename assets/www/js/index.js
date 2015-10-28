@@ -701,11 +701,12 @@ function DetallePedido(idpedido){
     }
 
 function NuevoPedido(){
-  xhReq.open("GET", "opciones/VENTAS/nuevopedido.html", false);
+
+  /*xhReq.open("GET", "opciones/VENTAS/nuevopedido.html", false);
   xhReq.send(null);
   document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
 
-  /*self.conexion.transaction(function(tx,rs){
+  self.conexion.transaction(function(tx,rs){
     tx.executeSql('SELECT max(ped_id) as nro from pedido',[],
           function(tx,rs) {
               var elemento=rs.rows.item(0);

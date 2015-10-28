@@ -702,6 +702,7 @@ function DetallePedido(idpedido){
 
 function NuevoPedido(){
 
+  location.href = 'opciones/VENTAS/nuevopedido.html';
   /*xhReq.open("GET", "opciones/VENTAS/nuevopedido.html", false);
   xhReq.send(null);
   document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;

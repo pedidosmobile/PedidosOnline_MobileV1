@@ -11,7 +11,7 @@
 
             for(var a = 0; a < rs.rows.length; a++){
                 var elemento=rs.rows.item(a);
-                 
+
                 source.push(elemento.ter_razonSocial);
                 mapping[elemento.ter_razonSocial] = elemento.ter_rowidPortal;
             }
@@ -20,6 +20,7 @@
             source: source,
             select: function(event, ui) {
               $('#tag_cliente').val(mapping[ui.item.value]);
+              $('#tag_idcliente').val(mapping[ui.item.value]);
               BuscarSucursales(mapping[ui.item.value]);
             }
           });
@@ -52,6 +53,7 @@
             source: source2,
             select: function(event, ui) {
                 $('#tag_sucursal').val(mapping2[ui.item.value]);
+                $('#tag_idsucursal').val(mapping2[ui.item.value]);
                 BuscarPtos_Envio(mapping2[ui.item.value]);
             }
            });
@@ -85,6 +87,7 @@
               source: source,
               select: function(event, ui) {
                   $('#tag_ptoEnvio').val(mapping[ui.item.value]);
+                  $('#tag_idptoEnvio').val(mapping[ui.item.value]);
               }
           });
              }
@@ -95,6 +98,8 @@
          });
         
         }
+
+  
 
 </script>
 
@@ -127,19 +132,26 @@
   <div id="content">
     <!--Contenido de la Pestaña 1-->
     <div id="content-1">
-      <form id="nuevo_encabezado" method="post">
+      <form id="nuevo_encabezado" method="post" >
 
+         <p>Nro. PEDIDO: <p id="lblNumero"></p></p>
+
+         <p>FECHA PEDIDO: <p id="lblFecha"></p></p>
+         
+         <input id="tag_idcliente" type="text" style="display: none;"/>
          <input id="tag_cliente" type="text" placeholder="Cliente"/>
 
+         <input id="tag_idsucursal" type="text" style="display: none;"/>
          <input id="tag_sucursal" type="text" placeholder="Sucursal"/>
       
+         <input id="tag_idptoEnvio" type="text" style="display: none;"/>
          <input id="tag_ptoEnvio" type="text" placeholder="Punto de envío"/>
 
-             <input type="text" class="date-picker form-control" data-date-start-view="decade" data-date-format="mm/dd/yy" data-date="02/01/99" value="02/01/99" name="birthday" placeholder="MM/DD/YY" />
+             <input id="tag_date" type="text" class="date-picker form-control" data-date-start-view="decade" data-date-format="mm/dd/yy" data-date="02/01/99" value="02/01/99" name="birthday" placeholder="MM/DD/YY" />
 
-             <textarea placeholder="Observaciones..." rows="5" cols="50" style="height: 100%;"></textarea>
+             <textarea id="tag_obs" placeholder="Observaciones..." rows="5" cols="50" style="height: 100%;" ></textarea>
              </br>
-             <button type="button" class="btn_pedidos" style="float: right;">Siguiente ></button>
+             <button type="button" name="submit" class="btn_pedidos" style="float: right;" onclick="RealizarPedido()">Siguiente ></button>
         </form>   
     </div>
   

@@ -215,3 +215,13 @@ i {
   width: 10px;
   height: 10px;
 }
+
+.neworder{
+  content:url(../img/icon-add.gif);
+  width: 8px;
+  height: 8px;
+  float: left;
+  margin-top: 6px;
+  margin-left: 10px; 
+  margin-right: 7px;
+}

@@ -640,41 +640,6 @@ function GetListaPedidos(tx){
     });
     }
 
-function DetallePedido(idpedido){
-
-  xhReq.open("GET", "opciones/VENTAS/nuevopedido.html", false);
-  //xhReq.send(null);
-  document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
-  //var cliente = $('#divPedidoDetalle');
-
-    /*self.conexion.transaction(function(tx,rs){
-    tx.executeSql('SELECT ped.ped_id, ped.ped_nroPedidoERP, ped.ped_fechapedido,' +
-                          'ped.ped_valorTotal,ter.ter_razonSocial, suc.suc_nombre ' +
-                            'from pedido ped ' +
-                              'join tercero ter ' +
-                                'on ped.ter_id = ter.ter_rowidPortal ' +
-                              'join sucursal suc ' +
-                                'on ter.ter_rowidPortal = suc.ter_id ' +
-                              'where ped_id = ' + idpedido ,[],
-          function(tx,rs) {
-             //for (var a = 0; a < rs.rows.length; a++) {
-                      var elemento=rs.rows.item(0);
-                      //alert(elemento.ter_razonSocial);
-
-                      //cliente.append('<input type="text" name="something" id="something" value="' + elemento.ter_razonSocial +'" />')
-                      var cliente2 = $('#txtCliente').val(elemento.ter_razonSocial);
-                   // }
-          },
-          function(tx, err) {
-            alert('Error ' + err);
-          }
-        );
-    });*/
-
-    var element = document.getElementById("contenidoCuerpo");
-    eval(element.firstChild.innerHTML);
-    }
-
 function CustomerList(tx){
   //alert('desde bd local');
     var lista = $('#divClientes');
@@ -699,3 +664,85 @@ function CustomerList(tx){
         );
     });
     }
+
+function DetallePedido(idpedido){
+
+  xhReq.open("GET", "opciones/VENTAS/nuevopedido.html", false);
+  xhReq.send(null);
+  document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
+  //var cliente = $('#divPedidoDetalle');
+
+    self.conexion.transaction(function(tx,rs){
+    tx.executeSql('SELECT ped.ped_id, ped.ped_nroPedidoERP, ped.ped_fechapedido,' +
+                          'ped.ped_valorTotal,ter.ter_razonSocial, suc.suc_nombre ' +
+                            'from pedido ped ' +
+                              'join tercero ter ' +
+                                'on ped.ter_id = ter.ter_rowidPortal ' +
+                              'join sucursal suc ' +
+                                'on ter.ter_rowidPortal = suc.ter_id ' +
+                              'where ped_id = ' + idpedido ,[],
+          function(tx,rs) {
+             //for (var a = 0; a < rs.rows.length; a++) {
+                      var elemento=rs.rows.item(0);
+                      //alert(elemento.ter_razonSocial);
+
+                      //cliente.append('<input type="text" name="something" id="something" value="' + elemento.ter_razonSocial +'" />')
+                      var cliente2 = $('#txtCliente').val(elemento.ter_razonSocial);
+                   // }
+          },
+          function(tx, err) {
+            alert('Error ' + err);
+          }
+        );
+    });
+
+    var element = document.getElementById("contenidoCuerpo");
+    eval(element.firstChild.innerHTML);
+    }
+
+function NuevoPedido(){
+  xhReq.open("GET", "opciones/VENTAS/nuevopedido.html", false);
+  xhReq.send(null);
+  document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
+
+  self.conexion.transaction(function(tx,rs){
+    tx.executeSql('SELECT max(ped_id) as nro from pedido',[],
+          function(tx,rs) {
+              var elemento=rs.rows.item(0);
+
+              $('#lblNumero').append(
+                  $('<span/>').text(elemento.nro+1)
+              );
+
+              var fecha = new Date().toJSON().slice(0,10);
+              $('#lblFecha').append(
+                  $('<span/>').text(fecha)
+              );
+          },
+          function(tx, err) {
+            alert('Error ' + err);
+          }
+        );
+    });
+
+  var element = document.getElementById("contenidoCuerpo");
+  eval(element.firstChild.innerHTML);
+  }
+
+function RealizarPedido()
+    {
+      jQuery("#tab-2").attr('checked', true);
+
+      var query = 'insert into pedido(ped_nroPedidoERP,ped_fechapedido,ter_id,suc_id,pto_id,ped_observaciones) values('
+                + '"' + $('#lblNumero').text() + '"'
+                + ',"' + $('#tag_date').val() + '"'
+                + ',"' + $('#tag_idcliente').val() + '"'
+                + ',"' + $('#tag_idsucursal').val() + '"'
+                + ',"' + $('#tag_idptoEnvio').val() + '"'
+                + ',"' + $('#tag_obs').val() + '");';
+      
+      console.log(query);          
+      //var test = $('#tag_cliente').val();
+      //alert(test);
+    }
+

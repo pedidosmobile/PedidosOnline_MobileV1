@@ -702,12 +702,14 @@ function DetallePedido(idpedido){
 
 function NuevoPedido(){
 
-  location.href = 'opciones/VENTAS/nuevopedido.html';
-  /*xhReq.open("GET", "opciones/VENTAS/nuevopedido.html", false);
+  //location.href = 'opciones/VENTAS/nuevopedido.html';
+  xhReq.open("GET", "opciones/VENTAS/nuevopedido.html", false);
   xhReq.send(null);
   document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
 
-  self.conexion.transaction(function(tx,rs){
+  cuerpo.className = 'page transition center';
+  estado="cuerpo";
+  /*self.conexion.transaction(function(tx,rs){
     tx.executeSql('SELECT max(ped_id) as nro from pedido',[],
           function(tx,rs) {
               var elemento=rs.rows.item(0);
@@ -725,10 +727,10 @@ function NuevoPedido(){
             alert('Error ' + err);
           }
         );
-    });
+    });*/
 
   var element = document.getElementById("contenidoCuerpo");
-  eval(element.firstChild.innerHTML);*/
+  eval(element.firstChild.innerHTML);
   }
 
 function RealizarPedido()

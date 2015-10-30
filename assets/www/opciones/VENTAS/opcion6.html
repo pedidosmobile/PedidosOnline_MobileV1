@@ -1,0 +1,253 @@
+<script type="text/javascript">
+  
+  CargarItems()
+
+    //Consulta de terceros - clientes
+  self.conexion.transaction(function(tx){
+        tx.executeSql('select ter_rowidPortal, ter_razonSocial from tercero',[],
+         
+        function(tx,rs) {
+           if (rs.rows.length > 0) {
+        
+             var source  = [ ];
+             var mapping = { };
+
+            for(var a = 0; a < rs.rows.length; a++){
+                var elemento=rs.rows.item(a);
+
+                source.push(elemento.ter_razonSocial);
+                mapping[elemento.ter_razonSocial] = elemento.ter_rowidPortal;
+            }
+
+          $('#tag_cliente').autocomplete({
+            source: source,
+            select: function(event, ui) {
+              $('#tag_cliente').val(mapping[ui.item.value]);
+              $('#tag_idcliente').val(mapping[ui.item.value]);
+              BuscarSucursales(mapping[ui.item.value]);
+            }
+          });
+         }
+        },
+        function(tx, err) {
+         console.log("Error al cargar sucursales "+err);
+        });
+        });
+
+    //Consulta de sucursales por id cliente - string id_tercero
+  function BuscarSucursales(id_tercero){
+       self.conexion.transaction(function(tx){
+          tx.executeSql('select suc_rowidPortal,suc_nombre from sucursal where ter_id = ?',[id_tercero],
+         
+          function(tx,rs) {
+            if (rs.rows.length > 0) {
+        
+             var source2  = [ ];
+             var mapping2 = { };
+
+            for(var a = 0; a < rs.rows.length; a++){
+                var elemento=rs.rows.item(a);
+                 
+                source2.push(elemento.suc_nombre);
+                mapping2[elemento.suc_nombre] = elemento.suc_rowidPortal;
+            }
+
+        $('#tag_sucursal').autocomplete({
+            source: source2,
+            select: function(event, ui) {
+                $('#tag_sucursal').val(mapping2[ui.item.value]);
+                $('#tag_idsucursal').val(mapping2[ui.item.value]);
+                BuscarPtos_Envio(mapping2[ui.item.value]);
+            }
+           });
+         }
+        },
+        function(tx, err) {
+           console.log("Error al cargar sucursales "+err);
+        });
+       });
+       }
+
+   //Consulta de puntos de envio por id sucursal - string id_suc
+  function BuscarPtos_Envio(id_suc){
+       self.conexion.transaction(function(tx){
+          tx.executeSql('select pto_rowiPortal, pto_nombre from punto_envio where suc_id = ?',[id_suc],
+         
+          function(tx,rs) {
+            if (rs.rows.length > 0) {
+        
+             var source  = [ ];
+             var mapping = { };
+
+            for(var a = 0; a < rs.rows.length; a++){
+                var elemento=rs.rows.item(a);
+                 
+                source.push(elemento.pto_nombre);
+          mapping[elemento.pto_nombre] = elemento.pto_rowiPortal;
+            }
+
+          $('#tag_ptoEnvio').autocomplete({
+              source: source,
+              select: function(event, ui) {
+                  $('#tag_ptoEnvio').val(mapping[ui.item.value]);
+                  $('#tag_idptoEnvio').val(mapping[ui.item.value]);
+                  
+              }
+          });
+             }
+          },
+          function(tx, err) {
+             console.log("Error al cargar sucursales "+err);
+          });
+         });
+        }
+
+  function CargarItems()
+    {
+      self.conexion.transaction(function(tx){
+        tx.executeSql('select item_rowidPortal, item_descripcion from item',[],
+         
+        function(tx,rs) {
+           if (rs.rows.length > 0) {
+        
+             var source  = [ ];
+             var mapping = { };
+             var item = { };
+             var itemsload = Array();
+             var precio = 5000;
+             var cantidad = 5;
+             var total = 0;
+            for(var a = 0; a < rs.rows.length; a++){
+
+                //result.push(rs.rows[a]);
+
+                var elemento=rs.rows.item(a);
+                source.push(elemento.item_descripcion);
+                mapping[elemento.item_descripcion] = elemento.item_rowidPortal;
+                item[elemento.item_descripcion] = elemento.item_descripcion;
+            }
+
+            
+
+          $('#tag_item').autocomplete({
+            source: source,
+            select: function(event, ui) {
+              
+              $('#itemstable').append('<tr>')
+                $('#itemstable').append('<td>' + mapping[ui.item.value] + '</td>')
+                $('#itemstable').append('<td>' + item[ui.item.value] + '</td>')
+                $('#itemstable').append('<td contenteditable="true">' + cantidad + '</td>')
+                $('#itemstable').append('<td>' + (cantidad * precio) + '</td>')
+              $('#itemstable').append('</tr>');
+
+              //total = total + (cantidad*precio);
+              //alert(total);
+
+              //$('#divItemsPedido').append(
+                              //$('<a/>').addClass('button color1').append(
+                                 //$('<span/>').text('Item: ' + item[ui.item.value]),//.addClass('meta expiry'),
+                                 //$('<br/>')
+                                 //$('<i/>').addClass('chevron')
+                             //)
+                            // )
+            }
+          }).autocomplete('instance')._renderItem = function( ul, item ) {
+                    return $( "<li></li>" )
+                        .data( "item.autocomplete", item )
+                        .append( "<a>" + "<img src='./img/ok.png' style='vertical-align:text-top; width: 20px; height: 20px'/>ITEM</a>" )
+                        .appendTo( ul );
+            };
+
+         }
+        },
+        function(tx, err) {
+         console.log("Error al cargar items "+err);
+        });
+        });
+      }
+  
+</script>
+
+<link rel="stylesheet" type="text/css" href="css/tabs1.css" />
+
+<!-- <div class="borde-h1 color2"></div>
+<h1>Captura de Pedidos</h1>  -->
+
+<!--Contenedor-->
+<div id="container_tabs">
+  <!--Pestaña 1 activa por defecto-->
+  <input id="tab-1" type="radio" name="tab-group" checked="checked" />
+  <label for="tab-1">1. Encabezado
+  <div></div> <!-- Barra indicadora de seleccion superior de la pestaña -->
+  </label>
+
+  <!--Pestaña 2 inactiva por defecto-->
+  <input id="tab-2" type="radio" name="tab-group" />
+  <label for="tab-2">2. Detalle
+  <div></div>
+  </label>
+
+  <!--Pestaña 3 inactiva por defecto-->
+  <input id="tab-3" type="radio" name="tab-group" />
+  <label for="tab-3">3. Balance
+  <div></div> <!-- Barra indicadora de seleccion superior de la pestaña -->
+  </label>
+
+  <!--Contenido a mostrar/ocultar-->
+  <div id="content">
+    <!--Contenido de la Pestaña 1-->
+    <div id="content-1">
+      <form id="nuevo_encabezado" method="post" >
+
+         <p>Nro. PEDIDO: <p id="lblNumero"></p></p>
+
+         <!--p>FECHA PEDIDO: <p id="lblFecha"></p></p-->
+         
+         <input id="tag_idcliente" type="text" style="display: none;"/>
+         <input id="tag_cliente" type="text" placeholder="Cliente"/>
+
+         <input id="tag_idsucursal" type="text" style="display: none;"/>
+         <input id="tag_sucursal" type="text" placeholder="Sucursal"/>
+      
+         <input id="tag_idptoEnvio" type="text" style="display: none;"/>
+         <input id="tag_ptoEnvio" type="text" placeholder="Punto de envío"/>
+
+             <input id="tag_date" type="text" class="date-picker form-control" data-date-start-view="decade" data-date-format="mm/dd/yy" data-date="02/01/99" value="02/01/99" name="birthday" placeholder="MM/DD/YY" />
+
+             <textarea id="tag_obs" placeholder="Observaciones..." rows="5" cols="50" style="height: 100%;" ></textarea>
+             </br>
+             <button type="button" name="submit" class="btn_pedidos" style="float: right;" onclick="jQuery('#tab-2').attr('checked', true)">Siguiente ></button>
+        </form>   
+    </div>
+  
+  <!--Contenido de la Pestaña 2-->
+  <div id="content-2">
+    <form id="nuevo_detallado" method="post">
+      <input id="tag_item" type="text" style="margin-top: 0px !important;" placeholder="Seleccionar item"/> 
+      </br>
+      <button type="button" name="submit" class="btn_pedidos" style="float: right;" onclick="jQuery('#tab-3').attr('checked', true)">Siguiente ></button>
+    </form>   
+  </div>
+  <!--Contenido de la Pestaña 3-->
+   <div id="content-3">
+      <div id="divItemsPedido"></div>
+      </br>
+
+    <table cellspacing="0" id="tblItems" name="tblItems"> 
+      <thead>
+        <tr>
+          <th>ITEM</th>
+          <th>DESCRIPCION</th>
+          <th>Q</th>
+          <th>VALOR</th>
+        </tr>
+      </thead>
+      <tbody id="itemstable">
+            
+      </tbody>
+    </table>
+
+      <button type="button" name="submit" class="btn_pedidos" style="float: right;" onclick="RealizarPedido();">Finalizar ></button>
+   </div>
+  </div>
+</div>

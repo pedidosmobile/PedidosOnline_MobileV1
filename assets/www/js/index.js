@@ -592,6 +592,8 @@ function saveDetails(query){
  });
   }
 
+
+//MOSTRAR LISTA DE PEDIDOS
 function GetListaPedidos(tx){
     var lista = $('#divPedidos');
     var x = 1;
@@ -640,6 +642,7 @@ function GetListaPedidos(tx){
     });
     }
 
+//MOSTRAR LISTA DE CLIENTES
 function CustomerList(tx){
   //alert('desde bd local');
     var lista = $('#divClientes');
@@ -665,6 +668,7 @@ function CustomerList(tx){
     });
     }
 
+//ABRIR EL DETALLE DE UN PEDIDO SELECCIONADO
 function DetallePedido(idpedido){
 
   xhReq.open("GET", "opciones/VENTAS/nuevopedido.html", false);
@@ -700,6 +704,7 @@ function DetallePedido(idpedido){
     eval(element.firstChild.innerHTML);
     }
 
+//ABRE EL FORMULARIO D ENUEVO PEDIDO PARA INICIAR CON EL PEDIDO
 function NuevoPedido(){
 
   //location.href = 'opciones/VENTAS/nuevopedido.html';
@@ -709,7 +714,7 @@ function NuevoPedido(){
 
   cuerpo.className = 'page transition center';
   estado="cuerpo";
-  /*self.conexion.transaction(function(tx,rs){
+  self.conexion.transaction(function(tx,rs){
     tx.executeSql('SELECT max(ped_id) as nro from pedido',[],
           function(tx,rs) {
               var elemento=rs.rows.item(0);
@@ -718,25 +723,25 @@ function NuevoPedido(){
                   $('<span/>').text(elemento.nro+1)
               );
 
-              var fecha = new Date().toJSON().slice(0,10);
+              /*var fecha = new Date().toJSON().slice(0,10);
               $('#lblFecha').append(
                   $('<span/>').text(fecha)
-              );
+              );*/
           },
           function(tx, err) {
             alert('Error ' + err);
           }
         );
-    });*/
+    });
 
   var element = document.getElementById("contenidoCuerpo");
   eval(element.firstChild.innerHTML);
   }
 
+//METODO FINAL QUE GUARDA EL PEDIDO EN BASE DE DATOS
 function RealizarPedido()
     {
       jQuery("#tab-2").attr('checked', true);
-
       var query = 'insert into pedido(ped_nroPedidoERP,ped_fechapedido,ter_id,suc_id,pto_id,ped_observaciones) values('
                 + '"' + $('#lblNumero').text() + '"'
                 + ',"' + $('#tag_date').val() + '"'
@@ -749,4 +754,3 @@ function RealizarPedido()
       //var test = $('#tag_cliente').val();
       //alert(test);
     }
-

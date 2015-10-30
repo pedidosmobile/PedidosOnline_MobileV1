@@ -261,6 +261,8 @@ table {
 
   border-collapse: separate;
   border-spacing: 0 5px;
+
+  width: 91%;
 }
 table th {
   padding: 5px 25px 5px 25px;

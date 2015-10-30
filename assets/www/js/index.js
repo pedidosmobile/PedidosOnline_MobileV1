@@ -704,9 +704,16 @@ function DetallePedido(idpedido){
     eval(element.firstChild.innerHTML);
     }
 
-//PARA GENERAR EL NUEVO NUMERO DE PEDIDO
+//ABRE EL FORMULARIO D ENUEVO PEDIDO PARA INICIAR CON EL PEDIDO
 function NuevoPedido(){
 
+  //location.href = 'opciones/VENTAS/nuevopedido.html';
+  xhReq.open("GET", "opciones/VENTAS/nuevopedido.html", false);
+  xhReq.send(null);
+  document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
+
+  cuerpo.className = 'page transition center';
+  estado="cuerpo";
   self.conexion.transaction(function(tx,rs){
     tx.executeSql('SELECT max(ped_id) as nro from pedido',[],
           function(tx,rs) {
@@ -726,6 +733,9 @@ function NuevoPedido(){
           }
         );
     });
+
+  var element = document.getElementById("contenidoCuerpo");
+  eval(element.firstChild.innerHTML);
   }
 
 //METODO FINAL QUE GUARDA EL PEDIDO EN BASE DE DATOS

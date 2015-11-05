@@ -106,7 +106,7 @@ function addClass( classname, element ) {
     	classname = ' '+classname;
     }
     element.className = cn+classname;
-}
+    }
 
 // Funci—n para eliminar clases css a elementos
 function removeClass( classname, element ) {
@@ -114,7 +114,7 @@ function removeClass( classname, element ) {
     var rxp = new RegExp( "\\s?\\b"+classname+"\\b", "g" );
     cn = cn.replace( rxp, '' );
     element.className = cn;
-}
+    }
 
 function menu(opcion){
 	// Si pulsamos en el bot—n de "menu" entramos en el if
@@ -149,7 +149,7 @@ function menu(opcion){
 		// console.log("---- "+items[i].innerHTML);
        //}
     }
-}
+  }
 
 function submenu(opcion){
   // A–adimos la clase al li presionado
@@ -160,6 +160,10 @@ function submenu(opcion){
 	xhReq.send(null);
 	document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
 	
+  if(opcionMenu == "VENTAS" && opcion == "6")
+  {
+    GenerarNroPedido();
+  }  
     //myScroll = new iScroll('wrapper', { hideScrollbar: true });	
 		// Refrescamos el elemento iscroll segœn el contenido ya a–adido mediante ajax, y hacemos que se desplace al top
 	//myScroll.refresh();
@@ -185,7 +189,7 @@ function submenu(opcion){
 
   var element = document.getElementById("contenidoCuerpo");
   eval(element.firstChild.innerHTML);
-}
+    }
 
 function StartPage() {
   alert('desde bd portal');
@@ -216,7 +220,7 @@ function StartPage() {
                   alert("Error "+response.statusCode);
                 }
          });
-}
+    }
 
 /*function GetListaPedidos() {
              $.ajax({
@@ -605,13 +609,13 @@ function GetListaPedidos(tx){
                               'join tercero ter ' +
                                 'on ped.ter_id = ter.ter_rowidPortal ' +
                               'join sucursal suc ' +
-                                'on ter.ter_rowidPortal = suc.ter_id limit 10',[],
+                                'on ter.ter_rowidPortal = suc.ter_id ORDER BY ped.ped_id DESC limit 10',[],
           function(tx,rs) {
              for (var a = 0; a < rs.rows.length; a++) {
 
               var elemento=rs.rows.item(a);
 
-                if(elemento.ped_estadoSync = "1")  
+                if(elemento.ped_estadoSync == "1")  
                           statusSync = $('<i/>').addClass('great')
                         else
                           statusSync = $('<i/>').addClass('warning')
@@ -705,22 +709,15 @@ function DetallePedido(idpedido){
     }
 
 //ABRE EL FORMULARIO D ENUEVO PEDIDO PARA INICIAR CON EL PEDIDO
-function NuevoPedido(){
-
-  //location.href = 'opciones/VENTAS/nuevopedido.html';
-  xhReq.open("GET", "opciones/VENTAS/nuevopedido.html", false);
-  xhReq.send(null);
-  document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
-
-  cuerpo.className = 'page transition center';
-  estado="cuerpo";
+function GenerarNroPedido(){
   self.conexion.transaction(function(tx,rs){
-    tx.executeSql('SELECT max(ped_id) as nro from pedido',[],
+    tx.executeSql('SELECT max(ped_id) as nro, max(ped_rowidPortal) as rowidPortal from pedido',[],
           function(tx,rs) {
               var elemento=rs.rows.item(0);
 
               $('#lblNumero').append(
-                  $('<span/>').text(elemento.nro+1)
+                  //$('<span/>').text(elemento.nro+1),
+                  $('<span/>').text(elemento.rowidPortal+1)
               );
 
               /*var fecha = new Date().toJSON().slice(0,10);
@@ -733,24 +730,58 @@ function NuevoPedido(){
           }
         );
     });
-
-  var element = document.getElementById("contenidoCuerpo");
-  eval(element.firstChild.innerHTML);
   }
 
 //METODO FINAL QUE GUARDA EL PEDIDO EN BASE DE DATOS
-function RealizarPedido()
+function FinalizarPedido()
     {
-      jQuery("#tab-2").attr('checked', true);
-      var query = 'insert into pedido(ped_nroPedidoERP,ped_fechapedido,ter_id,suc_id,pto_id,ped_observaciones) values('
-                + '"' + $('#lblNumero').text() + '"'
-                + ',"' + $('#tag_date').val() + '"'
-                + ',"' + $('#tag_idcliente').val() + '"'
-                + ',"' + $('#tag_idsucursal').val() + '"'
-                + ',"' + $('#tag_idptoEnvio').val() + '"'
-                + ',"' + $('#tag_obs').val() + '");';
-      
-      console.log(query);          
-      //var test = $('#tag_cliente').val();
-      //alert(test);
+      var queryPedido = 'insert into pedido(ped_nroPedidoERP,ped_fechapedido,ter_id, ped_rowidPortal, ped_observaciones, ped_valorNeto, ped_valorTotal, ped_estado) values('
+          + '"'  + $('#lblNumero').text() + '"'
+          + ',"' + $('#tag_date').val() + '"'
+          + ',' + $('#tag_idcliente').val()
+          + ','  + $('#lblNumero').text()
+          + ',"' + $('#tag_obs').val() + '"'
+          + ',"' + $('#divSubtotal').text() + '"'
+          + ',"' + $('#divSubtotal').text() + '"'
+          + ',"' + $('#tag_obs').val() + '");'
+
+      console.log(queryPedido);
+      saveDetails(queryPedido);
+
+      var queryDetalle = '';
+
+      $('#tblItems tbody tr').each(function () {
+
+            queryDetalle = 'insert into pedido_detalle(ped_id, item_id, pdet_descripcion, pdet_cantidad, pdet_valorNeto, pdet_fechaCreacion,pdet_rowidPortal) values('
+              + $('#lblNumero').text()
+              + ',' + $(this).find("td").eq(0).text() //id item
+              + ',"' + $(this).find("td").eq(1).text() + '"'//descripcion
+              + ',"' + $(this).find("td").eq(2).text() + '"'//cantidad
+              + ',"' + $("#divSubtotal").text()         + '"'
+              + ',"' + $('#tag_date').val()            + '"'
+              + ','  + $('#lblNumero').text() + ');'
+
+            var descItem = $(this).find("td").eq(1).text();
+            var Q = $(this).find("td").eq(2).text();
+            var Valor = $(this).find("td").eq(3).text();
+            //alert(nroItem + ' - ' + descItem + ' - ' + Q + ' - ' + Valor);
+            console.log(queryDetalle);
+            saveDetails(queryDetalle);
+          })
     }
+
+//SELECCIONAR LA CANTIDAD QUE SE QUIERE DE UN ITEM SELECCIONADO
+function ChangeQuantity(option)
+  {
+    var cantidad = parseInt($('#tag_Cantidad').val());
+    if(option == 1)
+    {
+      cantidad += 1;
+    }
+    else
+    {
+      cantidad -= 1;
+    }
+
+    $('#tag_Cantidad').val(cantidad)
+  }

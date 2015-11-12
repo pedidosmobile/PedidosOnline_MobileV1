@@ -62,7 +62,7 @@ var app = {
       },
 
     onDeviceReady: function() {
-    	// Ejecutamos la funci—n FastClick, que es la que nos elimina esos 300ms de espera al hacer click
+      // Ejecutamos la funci—n FastClick, que es la que nos elimina esos 300ms de espera al hacer click
     	new FastClick(document.body);
     	//this.successCB();
         db = window.openDatabase("PedidosMobileDB1", "1.0", "Pedidos mobile DB1", 200000);
@@ -675,14 +675,21 @@ function CustomerList(tx){
 //ABRIR EL DETALLE DE UN PEDIDO SELECCIONADO
 function DetallePedido(idpedido){
 
-  xhReq.open("GET", "opciones/VENTAS/nuevopedido.html", false);
+  xhReq.open("GET", "opciones/VENTAS/opcion6.html", false);
   xhReq.send(null);
   document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
   //var cliente = $('#divPedidoDetalle');
 
+  //deshabilita el tab 2 - en el detalle de un pedido seleccionado no se usa
+  jQuery('#tab-2').attr('disabled', true);
+
+  //La opcion es duplicar pedido
+  $('#btnFinalizar').text('Duplicar');
+
+    //Consulta el pedido
     self.conexion.transaction(function(tx,rs){
     tx.executeSql('SELECT ped.ped_id, ped.ped_nroPedidoERP, ped.ped_fechapedido,' +
-                          'ped.ped_valorTotal,ter.ter_razonSocial, suc.suc_nombre ' +
+                          'ped.ped_valorTotal,ter.ter_razonSocial, suc.suc_nombre, ped.ped_observaciones ' +
                             'from pedido ped ' +
                               'join tercero ter ' +
                                 'on ped.ter_id = ter.ter_rowidPortal ' +
@@ -693,10 +700,44 @@ function DetallePedido(idpedido){
              //for (var a = 0; a < rs.rows.length; a++) {
                       var elemento=rs.rows.item(0);
                       //alert(elemento.ter_razonSocial);
-
+                      $('#lblNumero').text(elemento.ped_id + ' - ' + elemento.ped_nroPedidoERP);
                       //cliente.append('<input type="text" name="something" id="something" value="' + elemento.ter_razonSocial +'" />')
-                      var cliente2 = $('#txtCliente').val(elemento.ter_razonSocial);
+                      $('#tag_cliente').val(elemento.ter_razonSocial);
+                      $('#tag_sucursal').val(elemento.suc_nombre);
+                      $('#tag_ptoEnvio').val(elemento.suc_nombre);
+                      $('#tag_date').val(elemento.ped_fechapedido);
+                      $('#tag_obs').val(elemento.ped_observaciones);
                    // }
+          },
+          function(tx, err) {
+            alert('Error ' + err);
+          }
+        );
+    });
+
+    //consulta el detalle del pedido
+    self.conexion.transaction(function(tx,rs){
+      var query = 'select pdet.item_id, pdet.pdet_cantidad, pdet.pdet_valorNeto, i.item_descripcion ' +
+                            'from pedido_detalle pdet ' +
+                              'join item i ' +
+                                'on pdet.item_id = i.item_rowidPortal ' +
+                              'join pedido ped ' +
+                                'on pdet.ped_id = ped.ped_rowidPortal ' +
+                              'where ped.ped_id = ' + idpedido;
+
+    tx.executeSql(query ,[],
+          function(tx,rs) {
+             for (var a = 0; a < rs.rows.length; a++) {
+                      var elemento2=rs.rows.item(a);
+
+                      $('#itemstable').append($('<tr/>').append(
+                      $('<td>' + elemento2.item_id + '</td>'),
+                      $('<td>' + elemento2.item_descripcion + '</td>'),
+                      $('<td>' + elemento2.pdet_cantidad + '</td>'),
+                      $('<td>' + elemento2.pdet_valorNeto + '</td>')
+              )
+              )
+                    }
           },
           function(tx, err) {
             alert('Error ' + err);
@@ -768,7 +809,59 @@ function FinalizarPedido()
             console.log(queryDetalle);
             saveDetails(queryDetalle);
           })
+
+      SincronizarPedidoPortal();
     }
+
+function SincronizarPedidoPortal(){
+      var pedidoData = "";
+      var results=[];
+    self.conexion.transaction(function(tx,rs){
+    tx.executeSql('SELECT ped.ped_id, ped.ped_nroPedidoERP, ped.ped_fechapedido,' +
+                          'ped.ped_valorTotal,ter.ter_razonSocial, suc.suc_nombre, ped.ped_observaciones ' +
+                            'from pedido ped ' +
+                              'left join tercero ter ' +
+                                'on ped.ter_id = ter.ter_rowidPortal ' +
+                              'join sucursal suc ' +
+                                'on ter.ter_rowidPortal = suc.ter_id ' +
+                              'where ped.ped_estadoSync IS NULL' ,[],
+          function(tx,rs) {
+            
+             for (var a = 0; a < rs.rows.length; a++) {
+                      //var elemento=rs.rows.item(0);
+                      results.push(rs.rows[a]);
+                    }
+            
+             pedidoData = JSON.stringify(results);
+             //debugger;
+             //console.log(pedidoData);
+
+            $.ajax({
+                type: 'POST',
+                url: 'http://gabrica.pedidosonline.co/SVC/EnviarDatos',
+                data: { entidad: 'TERCEROS', parametros: pedidoData },
+                //contentType: 'application/json; charset=utf-8',
+                //dataType: 'json',
+                success: function (r) {
+                    console.log('OK!');
+                },
+                function(tx, err) {
+                  alert('Error ' + err);
+          }
+            });
+
+          }
+        );
+    });
+
+            
+    }
+
+//DUplicar un pedido seleccionado
+function DuplicarPedido()
+  {
+
+  }
 
 //SELECCIONAR LA CANTIDAD QUE SE QUIERE DE UN ITEM SELECCIONADO
 function ChangeQuantity(option)

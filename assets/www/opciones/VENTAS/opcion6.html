@@ -5,6 +5,7 @@
              var precio = 0;
              var cantidad = 0;
              var subtotal = 0;
+             var itemsAdd = 0;
 
   CargarItems()
 
@@ -156,7 +157,7 @@
               precio = preciosel[ui.item.value];
               //cantidad = unidadsel[ui.item.value];
 
-
+              $('#divItemsAdd').empty();
 
               $('#CustomItem').show();
 
@@ -192,7 +193,9 @@
   $(function () {
     $("#btnAddItem").click(function () 
     {
+      $('#divSubtotal').empty();
 
+      itemsAdd +=1;
       cantidad = $('#tag_Cantidad').val();
       precio = $('#tag_Cantidad').val() * precio;
 
@@ -206,9 +209,11 @@
               )
               )
 
-      alert(subtotal);
-
-      $('#divSubtotal').text(subtotal);
+      $('#divSubtotal').append( 
+            $('<span/>').text('Subtotal: ' + subtotal),
+            $('<br/>'),
+            $('<span/>').text('Items: ' + itemsAdd)
+        )
 
       $('#tag_item').val('');
 
@@ -295,27 +300,27 @@
       <button type="button" name="submit" class="btn_pedidos" style="float: right;" onclick="jQuery('#tab-3').attr('checked', true)">Siguiente ></button>
     </form>   
 
-    <p>Subtotal: </p>
-    <div id="divSubtotal"></div>
-
+    <a href="#" onclick="jQuery('#tab-3').attr('checked', true)">
+        <div id="divSubtotal"></div>
+    </a>
   </div>
+
   <!--Contenido de la Pestaña 3-->
    <div id="content-3">
-      
 
-    <table cellspacing="0" id="tblItems" class="tblItems" name="tblItems"> 
-      <thead>
-        <tr>
-          <th>ITEM</th>
-          <th>DESCRIPCION</th>
-          <th>Q</th>
-          <th>VALOR</th>
-        </tr>
-      </thead>
-      <tbody id="itemstable">
-            
-      </tbody>
-    </table>
+      <table cellspacing="0" id="tblItems" class="tblItems" name="tblItems"> 
+        <thead>
+          <tr>
+            <th>ITEM</th>
+            <th>DESCRIPCION</th>
+            <th>Q</th>
+            <th>VALOR</th>
+          </tr>
+        </thead>
+        <tbody id="itemstable">
+              
+        </tbody>
+      </table>
 
       <button id="btnFinalizar" type="button" name="submit" class="btn_pedidos" style="float: right;" onClick="FinalizarPedido();">Finalizar ></button>
    </div>

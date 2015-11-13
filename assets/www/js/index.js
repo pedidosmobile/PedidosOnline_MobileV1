@@ -1,6 +1,6 @@
 // Declaraci—n de variables globales
 var myScroll, myScrollMenu, cuerpo, menuprincipal, wrapper, estado, opcionMenu = "CRM";
-
+var cont = 0;
 // Guardamos en variables elementos para poder rescatarlos despuŽs sin tener que volver a buscarlos
 cuerpo = document.getElementById("cuerpo"),
 menuprincipal = document.getElementById("menuprincipal"),
@@ -39,7 +39,8 @@ var app = {
   		wrapper.className = 'cssClass';
   			
   		// Leemos por ajax el archivos opcion1.html de la carpeta opciones
-  		xhReq.open("GET", "opciones/"+opcionMenu+"/opcion1.html", false);
+  		//xhReq.open("GET", "opciones/"+opcionMenu+"/opcion1.html", false);
+      xhReq.open("GET", "opciones/login.html", false);
   		xhReq.send(null);
   		document.getElementById("contenidoCuerpo").innerHTML=xhReq.responseText;
 
@@ -288,7 +289,7 @@ function SincronizarTerceros(){
                  //crossDomain: true,
                  success: function (data) {
                   //debugger;
-
+                $('#loader').show();
                  var dataparse = JSON.parse(data);
                  for (i = 0; i < dataparse.length; i++) {
                   query = 'INSERT INTO tercero(ter_rowidPortal, ter_identificacion, ter_tipoIdentificacion, ter_razonSocial, ter_estado, ter_esVendedor, ter_esCliente, ter_esProveedor, ter_fechaCreacion, ter_usuario_Creacion) values(';
@@ -303,9 +304,8 @@ function SincronizarTerceros(){
                           + ', "' + dataparse[i]['ter_fechaCreacion'] + '"'
                           + ', "' + dataparse[i]['ter_usuario_Creacion'] + '");'
                     //console.log(query);
-                    saveDetails(query);
+                    saveDetails(query,dataparse.length);
                   }
-
                  },
                  error: function (response) {
                      console.log("Error");
@@ -324,7 +324,7 @@ function SincronizarSucursales(){
                  dataType: "json",
                  processData: true,
                  success: function (data) {
-
+                 $('#loader').show();
                  var dataparse = JSON.parse(data);
 
                  for (i = 0; i < dataparse.length; i++) {
@@ -350,8 +350,8 @@ function SincronizarSucursales(){
                           + ', "' + dataparse[i]['suc_estado'] + '"'
                           + ', "' + dataparse[i]['suc_fechaCreacion'] + '"'
                           + ', "' + dataparse[i]['suc_estadoSync'] + '");'
-                    console.log(query);
-                    saveDetails(query);
+                    //console.log(query);
+                    saveDetails(query,dataparse.length);
                   }
 
                  },
@@ -372,7 +372,7 @@ function SincronizarPuntosEnvio(){
                  dataType: "json",
                  processData: true,
                  success: function (data) {
-
+                 $('#loader').show();
                  var dataparse = JSON.parse(data);
 
                  for (i = 0; i < dataparse.length; i++) {
@@ -383,8 +383,8 @@ function SincronizarPuntosEnvio(){
                           + ', "' + dataparse[i]['pto_fechaCreacion'] + '"'
                           + ', "' + dataparse[i]['pto_usuarioCreacion'] + '"'
                           + ', "' + dataparse[i]['pto_estadoSync'] + '");'
-                    console.log(query);
-                    saveDetails(query);
+                    //console.log(query);
+                    saveDetails(query,dataparse.length);
                   }
 
                  },
@@ -405,7 +405,7 @@ function SincronizarMaestros(){
                  dataType: "json",
                  processData: true,
                  success: function (data) {
-
+                 $('#loader').show();
                  var dataparse = JSON.parse(data);
 
                  for (i = 0; i < dataparse.length; i++) {
@@ -420,7 +420,7 @@ function SincronizarMaestros(){
                           + ', '  + dataparse[i]['suc_id']
                           + ', "' + dataparse[i]['mae_estadoSync'] + '");'
                     //console.log(query);
-                    saveDetails(query);
+                    saveDetails(query,dataparse.length);
                   }
 
                  },
@@ -441,7 +441,7 @@ function SincronizarPedidos(){
                  dataType: "json",
                  processData: true,
                  success: function (data) {
-
+                 $('#loader').show();
                  var dataparse = JSON.parse(data);
 
                  for (i = 0; i < dataparse.length; i++) {
@@ -467,8 +467,8 @@ function SincronizarPedidos(){
                           + ', "' + dataparse[i]['ped_estadoERP'] + '"'
                           + ', "' + dataparse[i]['ped_medioDePago'] + '"'
                           + ', "' + dataparse[i]['ped_estadoSync'] + '");'
-                    //console.log(query);
-                    saveDetails(query);
+                    //console.log(dataparse.length);
+                    saveDetails(query,dataparse.length);
                   }
 
                  },
@@ -476,7 +476,9 @@ function SincronizarPedidos(){
                      console.log("Error");
                      console.log(response.statusCode);
                  }
+
              });
+
         }
 
 function SincronizarItems(){
@@ -489,7 +491,7 @@ function SincronizarItems(){
                  dataType: "json",
                  processData: true,
                  success: function (data) {
-
+                 $('#loader').show();
                  var dataparse = JSON.parse(data);
 
                  for (i = 0; i < dataparse.length; i++) {
@@ -502,8 +504,8 @@ function SincronizarItems(){
                           + ', "' + dataparse[i]['item_fechaCreacion'] + '"'
                           + ', "' + dataparse[i]['item_usuarioCreacion'] + '"'
                           + ', "' + dataparse[i]['item_estadoSync'] + '");'
-                    console.log(query);
-                    saveDetails(query);
+                    //console.log(query);
+                    saveDetails(query,dataparse.length);
                   }
 
                  },
@@ -524,7 +526,7 @@ function SincronizarPrecios(){
                  dataType: "json",
                  processData: true,
                  success: function (data) {
-
+                 $('#loader').show();
                  var dataparse = JSON.parse(data);
 
                  for (i = 0; i < dataparse.length; i++) {
@@ -536,8 +538,8 @@ function SincronizarPrecios(){
                           + ', "' + dataparse[i]['pre_fechaCreacion'] + '"'
                           + ', "' + dataparse[i]['pre_usuarioCreacion'] + '"'
                           + ', "' + dataparse[i]['pto_estadoSync'] + '");'
-                    console.log(query);
-                    saveDetails(query);
+                    //console.log(query);
+                    saveDetails(query,dataparse.length);
                   }
 
                  },
@@ -558,7 +560,7 @@ function SincronizarDetallePedidos(){
                  dataType: "json",
                  processData: true,
                  success: function (data) {
-
+                 $('#loader').show();
                  var dataparse = JSON.parse(data);
 
                  for (i = 0; i < dataparse.length; i++) {
@@ -575,8 +577,8 @@ function SincronizarDetallePedidos(){
                           + ', "' + dataparse[i]['pdet_fechaCreacion'] + '"'
                           + ', "' + dataparse[i]['pdet_usuarioCreacion'] + '"'
                           + ', "' + dataparse[i]['pdet_estadoSync'] + '");'
-                    console.log(query);
-                    saveDetails(query);
+                    ///onsole.log(query);
+                    saveDetails(query,dataparse.length);
                   }
 
                  },
@@ -587,29 +589,60 @@ function SincronizarDetallePedidos(){
              });
         }
 
-function saveDetails(query){
+function saveDetails(query,len){
+  
  self.conexion.transaction(function(tx,rs){
-    tx.executeSql(query);
+    tx.executeSql(query,function(){alert('NO ok');},SaveFinish(len));
     query = '';
-
     console.log('****************************************INSERTADO********************************************');
- });
+ });      
   }
 
+function SaveFinish(len){
+  cont++; 
+  if(cont==len){
+    $('#loader').hide();
+    cont=0;
+  }
+}
 
 //MOSTRAR LISTA DE PEDIDOS
 function GetListaPedidos(tx){
     var lista = $('#divPedidos');
     var x = 1;
     var statusSync;
-    self.conexion.transaction(function(tx,rs){
-    tx.executeSql('SELECT ped.ped_id, ped.ped_nroPedidoERP, ped.ped_fechapedido,' +
+    var query = "";
+    
+    var search = $('#tag_Search').val();
+
+    if(search == "")
+    {
+      query = 'SELECT ped.ped_id, ped.ped_nroPedidoERP, ped.ped_fechapedido,' +
                           'ped.ped_valorTotal,ter.ter_razonSocial, suc.suc_nombre, ped.ped_estadoSync ' +
                             'from pedido ped ' +
                               'join tercero ter ' +
                                 'on ped.ter_id = ter.ter_rowidPortal ' +
                               'join sucursal suc ' +
-                                'on ter.ter_rowidPortal = suc.ter_id ORDER BY ped.ped_id DESC limit 10',[],
+                                'on ter.ter_rowidPortal = suc.ter_id ORDER BY ped.ped_id DESC limit 10 ';
+    }
+    else{
+      lista.empty();
+      query = 'SELECT ped.ped_id, ped.ped_nroPedidoERP, ped.ped_fechapedido,' +
+                          'ped.ped_valorTotal,ter.ter_razonSocial, suc.suc_nombre, ped.ped_estadoSync ' +
+                            'from pedido ped ' +
+                              'join tercero ter ' +
+                                'on ped.ter_id = ter.ter_rowidPortal ' +
+                              'join sucursal suc ' +
+                                'on ter.ter_rowidPortal = suc.ter_id where ' +
+                                'ped.ped_nroPedidoERP like "%' + search + '%" ' +
+                                'or ter.ter_razonSocial like "%' + search + '%" ' +
+                                'or suc.suc_nombre like "%' + search + '%" '; /*+
+                                ' ORDER BY ped.ped_id DESC limit 10';*/
+
+    }
+
+    self.conexion.transaction(function(tx,rs){
+    tx.executeSql(query,[],
           function(tx,rs) {
              for (var a = 0; a < rs.rows.length; a++) {
 
@@ -814,8 +847,8 @@ function FinalizarPedido()
     }
 
 function SincronizarPedidoPortal(){
-      var pedidoData = "";
-      var results=[];
+  var pedidoData = "";
+  var results=[];
     self.conexion.transaction(function(tx,rs){
     tx.executeSql('SELECT ped.ped_id, ped.ped_nroPedidoERP, ped.ped_fechapedido,' +
                           'ped.ped_valorTotal,ter.ter_razonSocial, suc.suc_nombre, ped.ped_observaciones ' +

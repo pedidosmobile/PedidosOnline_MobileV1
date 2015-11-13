@@ -245,6 +245,16 @@ i {
     left : 0 !important;
 }
 
+.loader {
+  position: fixed;
+  left: 100px;
+  top: 200px;
+  width: 50%;
+  height: 50%;
+  z-index: 9999;
+  background: url('../img/page-loader.gif') 50% 50% no-repeat rgb(249,249,249);
+}
+
 table a:link {
   color: #666;
   font-weight: bold;

@@ -278,7 +278,7 @@ function StartPage() {
 //SINCRONIZACION
 function SincronizarTerceros(){
   $.ajax({
-                 url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/SincronizarTerceros",
+                 url: "http://callrosas-001-site1.atempurl.com/DataMobile_Service.svc/Web/SincronizarTerceros",
                  //url: "http://gabrica.pedidosonline.co/SVC/ObtenerDatos?entidad=TERCEROS",
                  type: "GET",
                  cache: false,
@@ -316,7 +316,7 @@ function SincronizarTerceros(){
 
 function SincronizarSucursales(){
   $.ajax({
-                 url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/SincronizarSucursales",
+                 url: "http://callrosas-001-site1.atempurl.com/DataMobile_Service.svc/Web/SincronizarSucursales",
                  type: "GET",
                  cache: false,
                  data: "{}",
@@ -364,7 +364,7 @@ function SincronizarSucursales(){
 
 function SincronizarPuntosEnvio(){
   $.ajax({
-                 url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/SincronizarPuntosEnvio",
+                 url: "http://callrosas-001-site1.atempurl.com/DataMobile_Service.svc/Web/SincronizarPuntosEnvio",
                  type: "GET",
                  cache: false,
                  data: "{}",
@@ -397,7 +397,7 @@ function SincronizarPuntosEnvio(){
 
 function SincronizarMaestros(){
   $.ajax({
-                 url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/SincronizarMaestros",
+                 url: "http://callrosas-001-site1.atempurl.com/DataMobile_Service.svc/Web/SincronizarMaestros",
                  type: "GET",
                  cache: false,
                  data: "{}",
@@ -433,7 +433,7 @@ function SincronizarMaestros(){
 
 function SincronizarPedidos(){
   $.ajax({
-                 url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/SincronizarPedidos",
+                 url: "http://callrosas-001-site1.atempurl.com/DataMobile_Service.svc/Web/SincronizarPedidos",
                  type: "GET",
                  cache: false,
                  data: "{}",
@@ -483,7 +483,7 @@ function SincronizarPedidos(){
 
 function SincronizarItems(){
   $.ajax({
-                 url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/SincronizarItems",
+                 url: "http://callrosas-001-site1.atempurl.com/DataMobile_Service.svc/Web/SincronizarItems",
                  type: "GET",
                  cache: false,
                  data: "{}",
@@ -518,7 +518,7 @@ function SincronizarItems(){
 
 function SincronizarPrecios(){
   $.ajax({
-                 url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/SincronizarPrecios",
+                 url: "http://callrosas-001-site1.atempurl.com/DataMobile_Service.svc/Web/SincronizarPrecios",
                  type: "GET",
                  cache: false,
                  data: "{}",
@@ -552,7 +552,7 @@ function SincronizarPrecios(){
 
 function SincronizarDetallePedidos(){
   $.ajax({
-                 url: "http://riapira2289-001-site1.smarterasp.net/DataMobile_Service.svc/Web/SincronizarDetallePedidos",
+                 url: "http://callrosas-001-site1.atempurl.com/DataMobile_Service.svc/Web/SincronizarDetallePedidos",
                  type: "GET",
                  cache: false,
                  data: "{}",

@@ -38,6 +38,7 @@ var app = {
   		menuprincipal.className = 'page center';
   		wrapper.className = 'cssClass';
   			
+
   		// Leemos por ajax el archivos opcion1.html de la carpeta opciones
   		//xhReq.open("GET", "opciones/"+opcionMenu+"/opcion1.html", false);
       xhReq.open("GET", "opciones/login.html", false);
@@ -65,7 +66,8 @@ var app = {
     onDeviceReady: function() {
       // Ejecutamos la funci—n FastClick, que es la que nos elimina esos 300ms de espera al hacer click
     	new FastClick(document.body);
-    	//this.successCB();
+    	  $('#loader').hide();
+      //this.successCB();
         db = window.openDatabase("PedidosMobileDB1", "1.0", "Pedidos mobile DB1", 200000);
         db.transaction(app.Crear_BD, app.errorCB, app.successCB);
       },
@@ -93,7 +95,14 @@ var app = {
         },
 
     synchronization: function(tx){
-        //SincronizarTerceros();
+        SincronizarDetallePedidos();
+        SincronizarPrecios();
+        SincronizarItems();
+        SincronizarPedidos();
+        SincronizarMaestros();
+        SincronizarPuntosEnvio();
+        SincronizarSucursales();
+        SincronizarTerceros();
         }
 };
 
@@ -590,7 +599,7 @@ function SincronizarDetallePedidos(){
         }
 
 function saveDetails(query,len){
-  
+  //query = 'insert into usuario (usu_cedula,usu_nombre,usu_indActivo,usu_username,usu_password,usu_empresa) values("1012380","Erwin Pardo","1","hamid.pardo","12345678","GABRICA")';
  self.conexion.transaction(function(tx,rs){
     tx.executeSql(query,function(){alert('NO ok');},SaveFinish(len));
     query = '';
@@ -604,7 +613,7 @@ function SaveFinish(len){
     $('#loader').hide();
     cont=0;
   }
-}
+  }
 
 //MOSTRAR LISTA DE PEDIDOS
 function GetListaPedidos(tx){
@@ -910,4 +919,28 @@ function ChangeQuantity(option)
     }
 
     $('#tag_Cantidad').val(cantidad)
+  }
+
+function Authentication()
+  {
+    query = 'select * from usuario where usu_username = "' + $('#username').val() + '" and usu_password = "' + $('#password').val() + '"';
+    console.log(query);
+    self.conexion.transaction(function(tx,rs){
+    tx.executeSql(query,[],
+          function(tx,rs) {
+             if(rs.rows.length > 0)
+             {
+              alert('Sesion Iniciada');
+              app.synchronization();
+             }
+             else
+             {
+              alert('Usuario o Contrasena Incorrecta');
+             }
+          },
+          function(tx, err) {
+            alert('Error ' + err);
+          }
+        );
+    });
   }

@@ -1,5 +1,5 @@
 //SINCRONIZACION
-function SincronizarTerceros(){
+/*function SincronizarTerceros(){
   $.ajax({
                  url: "http://callrosas-001-site1.atempurl.com/DataMobile_Service.svc/Web/SincronizarTerceros",
                  //url: "http://gabrica.pedidosonline.co/SVC/ObtenerDatos?entidad=TERCEROS",
@@ -319,3 +319,4 @@ function saveDetails(query){
     console.log('****************************************INSERTADO********************************************');
  });
   }
+*/

@@ -286,14 +286,16 @@
       </br>
 
       <div id="CustomItem" style="display: none;">
-        <div id="divItemsAdd"></div>
+        <div id="divItemsAdd" style="width: 90%; margin: auto;"></div>
         </br>
 
-        <div id="tag_Quantity" >
-          <p>Cantidad: </p>
-          <input id="tag_Cantidad" type="number" placeholder="Cantidad"/>
-          <button type="button" name="submit" class="btn_add" style="float: right;" onclick="ChangeQuantity(1);">+</button>
-          <button type="button" name="submit" class="btn_add" style="float: right;" onclick="ChangeQuantity(2);">-</button>
+        <div id="tag_Quantity" style="width: 90%; margin:auto;">
+          <!--p>Cantidad: </p-->
+          <input readonly type="text" class="inputQ" value="Cantidad" style="float: left; color: #ab1c0c; width: 130px;" />
+          <button type="button" name="submit" class="btn_add" onclick="ChangeQuantity(1);">+</button>
+          <button type="button" name="submit" class="btn_add" onclick="ChangeQuantity(2);">-</button>
+          <input id="tag_Cantidad" type="number" class="inputQ" style="width: 222px; color:#519118;"/>
+          
         </div>
 
         <button type="button" name="submit" id="btnAddItem" >Agregar</button>

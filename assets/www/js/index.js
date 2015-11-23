@@ -609,7 +609,7 @@ function saveDetails(query,len){
 
 function SaveFinish(len){
   cont++; 
-  if(cont==len){
+  if(cont==this.len){
     $('#loader').hide();
     cont=0;
   }

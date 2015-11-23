@@ -599,7 +599,7 @@ function SincronizarDetallePedidos(){
         }
 
 function saveDetails(query,len){
-  query = 'insert into usuario (usu_cedula,usu_nombre,usu_indActivo,usu_username,usu_password,usu_empresa) values("1012380","Erwin Pardo","1","hamid.pardo","12345678","GABRICA")';
+  //query = 'insert into usuario (usu_cedula,usu_nombre,usu_indActivo,usu_username,usu_password,usu_empresa) values("1012380","Erwin Pardo","1","hamid.pardo","12345678","GABRICA")';
  self.conexion.transaction(function(tx,rs){
     tx.executeSql(query,function(){alert('NO ok');},SaveFinish(len));
     query = '';

@@ -82,10 +82,9 @@ body {
   font-weight: bold;
   color: #000;
   display: block;
-  /*white-space: nowrap;*/
-  word-wrap: break-word;
-  text-overflow: ellipsis;
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
   margin-left: 10px;
 }
 

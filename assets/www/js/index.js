@@ -908,17 +908,25 @@ function DuplicarPedido()
 //SELECCIONAR LA CANTIDAD QUE SE QUIERE DE UN ITEM SELECCIONADO
 function ChangeQuantity(option)
   {
-    var cantidad = parseInt($('#tag_Cantidad').val());
-    if(option == 1)
-    {
-      cantidad += 1;
-    }
-    else
-    {
-      cantidad -= 1;
-    }
+    var cantidad = 1;
 
-    $('#tag_Cantidad').val(cantidad)
+    if($('#tag_Cantidad').val() == ''){
+      $('#tag_Cantidad').val(cantidad);
+        }
+    else{
+      cantidad = parseInt($('#tag_Cantidad').val());
+
+      if(option == 1)
+      {
+        cantidad += 1;
+      }
+      else
+      {
+        cantidad -= 1;
+      }
+
+      $('#tag_Cantidad').val(cantidad);
+    }
   }
 
 function Authentication()

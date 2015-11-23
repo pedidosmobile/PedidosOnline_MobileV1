@@ -217,6 +217,8 @@
 
       $('#tag_item').val('');
 
+      $('#tag_Cantidad').val('');
+
       $('#CustomItem').hide();
 
       $('#divItemsAdd').empty();
@@ -289,7 +291,7 @@
 
         <div id="tag_Quantity" >
           <p>Cantidad: </p>
-          <input id="tag_Cantidad" type="text" value="1"/>
+          <input id="tag_Cantidad" type="text" placeholder="Cantidad" pattern="[0-9]*"/>
           <button type="button" name="submit" class="btn_add" style="float: right;" onclick="ChangeQuantity(1);">+</button>
           <button type="button" name="submit" class="btn_add" style="float: right;" onclick="ChangeQuantity(2);">-</button>
         </div>
